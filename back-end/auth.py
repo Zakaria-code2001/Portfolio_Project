@@ -80,5 +80,5 @@ class Login(Resource):
 @auth_ns.route('/refresh')
 class RefreshResource(Resource):
     @jwt_required(refresh=True)
-
-
+    def post(self):
+        current_user = get_jwt_identity()
