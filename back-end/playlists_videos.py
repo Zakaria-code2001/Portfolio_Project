@@ -4,9 +4,9 @@ from flask_restx import Resource, fields, Namespace
 
 from models import Playlist, Video
 
-views_ns = Namespace('views', description='views namescpace for playlists and videos')
+playlists_videos_ns = Namespace('playlists_videos', description='views namescpace for playlists and videos')
 
-playlist_model = views_ns.model(
+playlist_model = playlists_videos_ns.model(
     "Playlist",
     {
         "id": fields.Integer(),
@@ -17,7 +17,7 @@ playlist_model = views_ns.model(
 )
 
 # Model serializer for videos
-video_model = views_ns.model(
+video_model = playlists_videos_ns.model(
     "Video",
     {
         "id": fields.Integer(),
@@ -28,24 +28,24 @@ video_model = views_ns.model(
 
 
 # Hello World endpoint
-@views_ns.route('/hello')
+@playlists_videos_ns.route('/hello')
 class HelloResource(Resource):
     def get(self):
         return {"message": "Hello World"}
 
 
 # Playlists resource
-@views_ns.route('/playlists')
+@playlists_videos_ns.route('/playlists')
 class PlaylistsResource(Resource):
 
-    @views_ns.marshal_list_with(playlist_model)
+    @playlists_videos_ns.marshal_list_with(playlist_model)
     def get(self):
         """ Get all playlists """
         playlists = Playlist.query.all()
         return playlists
 
-    @views_ns.expect(playlist_model)
-    @views_ns.marshal_with(playlist_model)
+    @playlists_videos_ns.expect(playlist_model)
+    @playlists_videos_ns.marshal_with(playlist_model)
     @jwt_required()
     def post(self):
         """ Create a new playlist """
@@ -63,17 +63,17 @@ class PlaylistsResource(Resource):
 
 
 # Single playlist resource
-@views_ns.route('/playlist/<int:id>')
+@playlists_videos_ns.route('/playlist/<int:id>')
 class PlaylistResource(Resource):
 
-    @views_ns.marshal_with(playlist_model)
+    @playlists_videos_ns.marshal_with(playlist_model)
     def get(self, id):
         """ Get a playlist by id """
         playlist = Playlist.query.get_or_404(id)
         return make_response(playlist, 200)
 
-    @views_ns.expect(playlist_model)
-    @views_ns.marshal_with(playlist_model)
+    @playlists_videos_ns.expect(playlist_model)
+    @playlists_videos_ns.marshal_with(playlist_model)
     @jwt_required()
     def put(self, id):
         """ Update a playlist by id """
@@ -87,7 +87,7 @@ class PlaylistResource(Resource):
 
         return playlist_to_update, 200
 
-    @views_ns.marshal_with(playlist_model)
+    @playlists_videos_ns.marshal_with(playlist_model)
     @jwt_required()
     def delete(self, id):
         """ Delete a playlist by id """
@@ -96,17 +96,17 @@ class PlaylistResource(Resource):
         return {'message': 'Playlist deleted successfully'}, 204
 
 
-@views_ns.route('/playlist/<int:playlist_id>/videos')
+@playlists_videos_ns.route('/playlist/<int:playlist_id>/videos')
 class PlaylistVideosResource(Resource):
 
-    @views_ns.marshal_list_with(video_model)
+    @playlists_videos_ns.marshal_list_with(video_model)
     def get(self, playlist_id):
         """ Get all videos in a playlist """
         playlist = Playlist.query.get_or_404(playlist_id)
         return playlist.videos, 200
 
-    @views_ns.expect(video_model)
-    @views_ns.marshal_with(video_model)
+    @playlists_videos_ns.expect(video_model)
+    @playlists_videos_ns.marshal_with(video_model)
     @jwt_required()
     def post(self, playlist_id):
         """ Add a new video to a playlist """
@@ -120,17 +120,17 @@ class PlaylistVideosResource(Resource):
         return new_video, 201
 
 
-@views_ns.route('/playlist/<int:playlist_id>/video/<int:video_id>')
+@playlists_videos_ns.route('/playlist/<int:playlist_id>/video/<int:video_id>')
 class PlaylistVideoResource(Resource):
 
-    @views_ns.marshal_with(video_model)
+    @playlists_videos_ns.marshal_with(video_model)
     def get(self, playlist_id, video_id):
         """ Get a specific video in a playlist by id """
         video = Video.query.filter_by(id=video_id, playlist_id=playlist_id).first_or_404()
         return video, 200
 
-    @views_ns.expect(video_model)
-    @views_ns.marshal_with(video_model)
+    @playlists_videos_ns.expect(video_model)
+    @playlists_videos_ns.marshal_with(video_model)
     @jwt_required()
     def put(self, playlist_id, video_id):
         """ Update a video in a playlist """
