@@ -1,7 +1,7 @@
 import json
 
 from flask import Flask, request, jsonify, Response, make_response
-from flask_jwt_extended import create_access_token, create_refresh_token
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required
 from flask_restx import Resource, fields, Namespace
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
@@ -76,3 +76,9 @@ class Login(Resource):
             return make_response(jsonify(response_data), 200)
         else:
             return make_response(jsonify({"message": "Invalid email or password"}), 401)
+
+@auth_ns.route('/refresh')
+class RefreshResource(Resource):
+    @jwt_required(refresh=True)
+
+
