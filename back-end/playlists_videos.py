@@ -4,7 +4,7 @@ from flask_restx import Resource, fields, Namespace
 
 from models import Playlist, Video
 
-playlists_videos_ns = Namespace('playlists_videos', description='views namescpace for playlists and videos')
+playlists_videos_ns = Namespace('playlist_video', description='views namescpace for playlists and videos')
 
 playlist_model = playlists_videos_ns.model(
     "Playlist",

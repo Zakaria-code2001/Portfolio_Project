@@ -15,7 +15,7 @@ class APITestCase(unittest.TestCase):
             db.create_all()
 
     def test_hello_world(self):
-        hello_response = self.client.get('/playlists_videos/hello')
+        hello_response = self.client.get('/playlist_video/hello')
         json = hello_response.json
         self.assertEqual(json, {"message": "Hello World"})
 
@@ -53,13 +53,13 @@ class APITestCase(unittest.TestCase):
 
     def test_get_all_playlists(self):
         """TEST GETTING ALL PLAYLISTS"""
-        response = self.client.get('playlists_videos/playlists')
+        response = self.client.get('playlist_video/playlists')
         status_code = response.status_code
         self.assertEqual(status_code, 200)
 
     def test_get_one_playlist(self):
         id = 2
-        response = self.client.get(f'playlists_videos/playlists/{id}')
+        response = self.client.get(f'playlist_video/playlists/{id}')
         status_code = response.status_code
         self.assertEqual(status_code, 404)
 
@@ -88,7 +88,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         #print(playlist_response.json)
@@ -120,7 +120,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -129,7 +129,7 @@ class APITestCase(unittest.TestCase):
             "name": "Updated Test Playlist",
             "image_file": "path/to/your/updated_image.jpg"
         }
-        update_response = self.client.put(f'/playlists_videos/playlist/{playlist_id}',
+        update_response = self.client.put(f'/playlist_video/playlist/{playlist_id}',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=updated_playlist_data)
 
@@ -160,16 +160,16 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
         playlist_id = playlist_response.json['id']
-        delete_response = self.client.delete(f'/playlists_videos/playlist/{playlist_id}',
+        delete_response = self.client.delete(f'/playlist_video/playlist/{playlist_id}',
                                              headers={'Authorization': f'Bearer {access_token}'})
 
         self.assertEqual(delete_response.status_code, 204)
-        get_response = self.client.get(f'/playlists_videos/playlist/{playlist_id}',
+        get_response = self.client.get(f'/playlist_video/playlist/{playlist_id}',
                                        headers={'Authorization': f'Bearer {access_token}'})
 
         self.assertEqual(get_response.status_code, 404)
@@ -197,7 +197,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -210,13 +210,13 @@ class APITestCase(unittest.TestCase):
             "title": "Video 2",
             "url": "https://example.com/video2"
         }
-        self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                          headers={'Authorization': f'Bearer {access_token}'},
                          json=video1_data)
-        self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                          headers={'Authorization': f'Bearer {access_token}'},
                          json=video2_data)
-        get_response = self.client.get(f'/playlists_videos/playlist/{playlist_id}/videos',
+        get_response = self.client.get(f'/playlist_video/playlist/{playlist_id}/videos',
                                        headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(get_response.status_code, 200)
         videos = get_response.json
@@ -245,7 +245,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -254,12 +254,12 @@ class APITestCase(unittest.TestCase):
             "title": "Test Video",
             "url": "https://example.com/test_video"
         }
-        video_response = self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        video_response = self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=video_data)
         self.assertEqual(video_response.status_code, 201)
         video_id = video_response.json['id']
-        get_video_response = self.client.get(f'/playlists_videos/playlist/{playlist_id}/video/{video_id}',
+        get_video_response = self.client.get(f'/playlist_video/playlist/{playlist_id}/video/{video_id}',
                                              headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(get_video_response.status_code, 200)
         retrieved_video = get_video_response.json
@@ -290,7 +290,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -299,7 +299,7 @@ class APITestCase(unittest.TestCase):
             "title": "Test Video",
             "url": "https://example.com/test_video"
         }
-        video_response = self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        video_response = self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=video_data)
         self.assertEqual(video_response.status_code, 201)
@@ -330,7 +330,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -339,12 +339,12 @@ class APITestCase(unittest.TestCase):
             "title": "Test Video",
             "url": "https://example.com/test_video"
         }
-        video_response = self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        video_response = self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=video_data)
         self.assertEqual(video_response.status_code, 201)
         video_id = video_response.json['id']
-        get_video_response = self.client.get(f'/playlists_videos/playlist/{playlist_id}/video/{video_id}',
+        get_video_response = self.client.get(f'/playlist_video/playlist/{playlist_id}/video/{video_id}',
                                              headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(get_video_response.status_code, 200)
         retrieved_video = get_video_response.json
@@ -375,7 +375,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -384,7 +384,7 @@ class APITestCase(unittest.TestCase):
             "title": "Test Video",
             "url": "https://example.com/test_video"
         }
-        video_response = self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        video_response = self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=video_data)
         self.assertEqual(video_response.status_code, 201)
@@ -393,7 +393,7 @@ class APITestCase(unittest.TestCase):
             "title": "Updated Test Video",
             "url": "https://example.com/updated_test_video"
         }
-        update_response = self.client.put(f'/playlists_videos/playlist/{playlist_id}/video/{video_id}',
+        update_response = self.client.put(f'/playlist_video/playlist/{playlist_id}/video/{video_id}',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=updated_video_data)
         self.assertEqual(update_response.status_code, 201)
@@ -425,7 +425,7 @@ class APITestCase(unittest.TestCase):
             "name": "Test Playlist",
             "image_file": "path/to/your/image.jpg"
         }
-        playlist_response = self.client.post('/playlists_videos/playlists',
+        playlist_response = self.client.post('/playlist_video/playlists',
                                              headers={'Authorization': f'Bearer {access_token}'},
                                              json=playlist_data)
         self.assertEqual(playlist_response.status_code, 201)
@@ -435,15 +435,15 @@ class APITestCase(unittest.TestCase):
             "title": "Test Video",
             "url": "https://example.com/test_video"
         }
-        video_response = self.client.post(f'/playlists_videos/playlist/{playlist_id}/videos',
+        video_response = self.client.post(f'/playlist_video/playlist/{playlist_id}/videos',
                                           headers={'Authorization': f'Bearer {access_token}'},
                                           json=video_data)
         self.assertEqual(video_response.status_code, 201)
         video_id = video_response.json['id']
-        delete_response = self.client.delete(f'/playlists_videos/playlist/{playlist_id}/video/{video_id}',
+        delete_response = self.client.delete(f'/playlist_video/playlist/{playlist_id}/video/{video_id}',
                                              headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(delete_response.status_code, 204)
-        get_response = self.client.get(f'/playlists_videos/playlist/{playlist_id}/video/{video_id}',
+        get_response = self.client.get(f'/playlist_video/playlist/{playlist_id}/video/{video_id}',
                                        headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(get_response.status_code, 404)
 
