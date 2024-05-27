@@ -48,8 +48,43 @@ class APITestCase(unittest.TestCase):
         }
         login_response = self.client.post('/auth/login', json=login_data)
         status_code = login_response.status_code
-
         #print(response_data)
+
+    def test_refresh(self):
+        # Signup Data
+        signup_data = {
+            "first_name": "testname",
+            "last_name": "testlast",
+            "email": "testemail@test.com",
+            "password": "dnaininw"
+        }
+
+        # Signup Request
+        signup_response = self.client.post('/auth/signup', json=signup_data)
+        self.assertEqual(signup_response.status_code, 201, "Signup failed")
+
+        # Login Data
+        login_data = {
+            "email": "testemail@test.com",
+            "password": "dnaininw"
+        }
+
+        # Login Request
+        login_response = self.client.post('/auth/login', json=login_data)
+        self.assertEqual(login_response.status_code, 200, "Login failed")
+        access_token = login_response.json.get('access_token')
+        refresh_token = login_response.json.get('refresh_token')
+
+        # Refresh Request
+        headers = {'Authorization': f'Bearer {refresh_token}'}
+        refresh_response = self.client.post('/auth/refresh', headers=headers)
+        self.assertEqual(refresh_response.status_code, 200, "Token refresh failed")
+        new_access_token = refresh_response.json.get('access_token')
+
+        # Protected Endpoint Request with New Access Token
+        headers = {'Authorization': f'Bearer {new_access_token}'}
+        protected_endpoint_response = self.client.get('/some_protected_endpoint', headers=headers)
+        self.assertEqual(protected_endpoint_response.status_code, 404, "Accessing protected endpoint should fail")
 
     def test_get_all_playlists(self):
         """TEST GETTING ALL PLAYLISTS"""
