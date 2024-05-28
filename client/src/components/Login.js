@@ -3,14 +3,14 @@ import {Form,Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 const LoginPage = ()=>{
-    const [username,setUsername]=useState('')
+    const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
     const loginUser=()=>{
-        console.log(username);
+        console.log(email);
         console.log(password);
 
-        setUsername('')
+        setEmail('')
         setPassword('')
     }
     return(
@@ -19,11 +19,11 @@ const LoginPage = ()=>{
                 <h1>Login page</h1>
                 <form>
                     <Form.Group>
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control type="text" placeholder ="Enter your Username"
-                        value={username}
-                        name="username"
-                        onChange={(e)=>{setUsername(e.target.value)}}
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" placeholder ="Enter your Email"
+                        value={email}
+                        name="email"
+                        onChange={(e)=>{setEmail(e.target.value)}}
                         />
                     </Form.Group>
                     <br></br>

@@ -55,9 +55,7 @@ class SignUp(Resource):
             password=generate_password_hash(password)
         )
 
-        # Save the new user to the database
         new_user.save()
-
         return make_response(jsonify({"message": "User created successfully"}), 201)
 
 
@@ -76,7 +74,7 @@ class Login(Resource):
             access_token = create_access_token(identity=user_id.id)
             refresh_token = create_refresh_token(identity=user_id.id)
             response_data = {"access_token": access_token, "refresh_token": refresh_token}
-            return make_response(jsonify(response_data), 200)
+            return make_response(jsonify({"access_token": access_token, "refresh_token": refresh_token}), 200)
         else:
             return make_response(jsonify({"message": "Invalid email or password"}), 401)
 
