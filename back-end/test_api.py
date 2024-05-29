@@ -11,9 +11,13 @@ class APITestCase(unittest.TestCase):
         self.client = self.app.test_client()
 
         with self.app.app_context():
-            db.init_app(self.app)
             db.create_all()
-
+            
+    def tearDown(self):
+        with self.app.app_context():
+            db.session.remove()
+            db.drop_all()
+            
     def test_hello_world(self):
         hello_response = self.client.get('/playlist_video/hello')
         json = hello_response.json
@@ -479,10 +483,6 @@ class APITestCase(unittest.TestCase):
                                        headers={'Authorization': f'Bearer {access_token}'})
         self.assertEqual(get_response.status_code, 404)
 
-    def tearDown(self):
-        with self.app.app_context():
-            db.session.remove()
-            db.drop_all()
 
 
 if __name__ == '__main__':

@@ -152,3 +152,30 @@ class RefreshResource(Resource):
         new_access_token=create_access_token(identity=current_user)
 
         return make_response(jsonify({"access_token":new_access_token}),200)
+
+@auth_ns.route('/user/<int:user_id>')
+class UserResource(Resource):
+    """
+        UserResource
+
+        This resource handles operations related to individual users.
+    """
+    def delete(self, user_id):
+        """
+            Delete a user.
+            This method handles the DELETE request to delete a user with the specified ID.
+            The method performs the following steps:
+            1. Retrieves the user based on the provided user ID.
+            2. If the user exists, deletes the user from the database.
+            3. Returns a success message.
+            Returns:
+                Response: A JSON response with a message and an appropriate HTTP status code.
+                - 200 if the user is deleted successfully.
+                - 404 if the user with the specified ID is not found.
+        """
+        user = User.query.get(user_id)
+        if user:
+            user.delete()
+            return make_response(jsonify({"message": "User deleted successfully"}), 200)
+        else:
+            return make_response(jsonify({"message": "User not found"}), 404)
