@@ -7,7 +7,7 @@ const VideosPage = () => {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetch(`/playlist/${playlist_id}/videos`)
+    fetch(`/playlist_video/playlist/${playlist_id}/videos`)
       .then(response => response.json())
       .then(data => {
         setVideos(data);

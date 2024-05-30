@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 const PlaylistsPage = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [playlists, setPlaylists] = useState([]);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         fetchPlaylists();
@@ -32,21 +33,24 @@ const PlaylistsPage = () => {
         .catch(err => console.error('Error fetching playlists:', err));
     };
 
+    const closeModal = () => {
+        setShow(false);
+    };
+
+    const showModal = () => {
+        setShow(true);
+    };
+
     const createPlaylist = (data) => {
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
-        console.log("Token:", token);
-    
         const decodedToken = jwtDecode(token);
-        console.log("Decoded Token:", decodedToken);
         const user_id = decodedToken.sub;
-    
+
         const requestData = {
             ...data,
             user_id: user_id
         };
-    
-        console.log("Request Data:", requestData);
-    
+
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -56,9 +60,7 @@ const PlaylistsPage = () => {
             },
             body: JSON.stringify(requestData)
         };
-    
-        console.log("Request Options:", requestOptions);
-    
+
         fetch('/playlist_video/playlists', requestOptions)
             .then(res => {
                 if (!res.ok) {
@@ -69,10 +71,10 @@ const PlaylistsPage = () => {
             .then(data => {
                 console.log('Playlist created successfully:', data);
                 reset();
+                fetchPlaylists(); // Refresh playlists
             })
             .catch(err => {
                 console.error('There was a problem creating the playlist:', err);
-                
                 if (err.response) {
                     err.response.json().then(responseBody => console.log('Response Body:', responseBody));
                 } else {
@@ -83,26 +85,37 @@ const PlaylistsPage = () => {
 
     return (
         <div className="container">
+            <Modal
+                show={show}
+                size='lg'
+                onHide={closeModal}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Update Playlist</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Update</p>
+                </Modal.Body>
+            </Modal>
             <h1>Playlists</h1>
             <div className="playlist-container">
-      {playlists.map(playlist => (
-        <Card key={playlist.id} className="playlist">
-          <Card.Body>
-            <Card.Title>{playlist.name}</Card.Title>
-            {/* Wrap the entire card with Link */}
-            <Link to={`/playlist/${playlist.id}`}>
-              {playlist.image_file && (
-                <img src={playlist.image_file} alt={playlist.name} className="small-image" />
-              )}
-            </Link>
-          </Card.Body>
-        </Card>
-      ))}
-    </div>
-
+                {playlists.map(playlist => (
+                    <Card key={playlist.id} className="playlist">
+                        <Card.Body>
+                            <Card.Title>{playlist.name}</Card.Title>
+                            <Link to={`/playlist/${playlist.id}/`}>
+                                {playlist.image_file && (
+                                    <img src={playlist.image_file} alt={playlist.name} className="small-image" />
+                                )}
+                            </Link>
+                            <Button variant='primary' onClick={showModal}>Update</Button>
+                        </Card.Body>
+                    </Card>
+                ))}
+            </div>
 
             <h1>Create A Playlist</h1>
-            <form onSubmit={handleSubmit(createPlaylist)}>
+            <Form onSubmit={handleSubmit(createPlaylist)}>
                 <Form.Group>
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" {...register('name', { required: true, maxLength: 25 })} />
@@ -120,7 +133,7 @@ const PlaylistsPage = () => {
                     </p>}
                 </Form.Group>
                 <Button variant="primary" type="submit">Save</Button>
-            </form>
+            </Form>
         </div>
     );
 };
