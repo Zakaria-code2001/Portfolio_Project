@@ -1,17 +1,40 @@
 import React, {useState} from "react";
 import {Form,Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
+import { login } from "../auth";
+import { useHistory } from 'react-router-dom'
+
 
 const LoginPage = ()=>{
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
 
-    const loginUser=()=>{
-        console.log(email);
-        console.log(password);
+    const {register, handleSubmit,reset,formState:{errors}}=useForm()
 
-        setEmail('')
-        setPassword('')
+    const history = useHistory()
+
+    const loginUser=(data)=>{
+
+        console.log(data)
+
+
+        const requestOptions={
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(data)
+        }
+
+        fetch('/auth/login',requestOptions)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.access_token)
+            login(data.access_token)
+
+            history.push('/')
+        })
+
+        reset()
     }
     return(
         <div className="container">
@@ -21,25 +44,26 @@ const LoginPage = ()=>{
                     <Form.Group>
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="text" placeholder ="Enter your Email"
-                        value={email}
-                        name="email"
-                        onChange={(e)=>{setEmail(e.target.value)}}
+                        {...register('email',{required:true,maxLength:80})}
                         />
                     </Form.Group>
+                    {errors.email && <p style= {{color:'red'}}><small>Email is required</small> </p>}
+                    {errors.email?.type ==="maxLength" && <p style = { { color:'red'}}> <small> email should be like "exemple@gmail.com"</small></p>}
                     <br></br>
 
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder ="Enter your Password"
-                        value={password}
-                        name="password"
-                        onChange={(e)=>{setPassword(e.target.value)}}
+                    {...register('password',{required:true,minLength:8})}
                         />
                     </Form.Group>
+                    {errors.password && <p style= {{color:'red'}}><small>Password is required</small> </p>}
+                    {errors.password?.type ==="maxLength" && <p style = { { color:'red'}}> 
+                    <small> Password should be more than 8 characters</small></p>}
                     <br></br>
                     
                     <Form.Group>
-                        <Button as="sub" variant="primary" onClick={loginUser}>SignUp</Button>
+                        <Button as="sub" variant="primary" onClick={handleSubmit(loginUser)}>Login</Button>
                     </Form.Group>
                     <br></br>
                     <Form.Group>
