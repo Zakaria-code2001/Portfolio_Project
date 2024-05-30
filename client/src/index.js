@@ -13,6 +13,8 @@ import PlaylistsPage from './components/Playlists';
 import LoginPage from './components/Login';
 import SignUpPage from './components/SignUp';
 import HomePage from './components/Home';
+import VideosPage from './components/Videos'
+
 const App = () => {
     
 

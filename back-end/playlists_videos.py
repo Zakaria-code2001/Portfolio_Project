@@ -58,14 +58,16 @@ class PlaylistsResource(Resource):
         Handles retrieving and creating playlists.
     """
     @playlists_videos_ns.marshal_list_with(playlist_model)
+    @jwt_required()
     def get(self):
         """
             Get all playlists.
             Returns:
                 JSON response with a list of all playlists.
         """
-        playlists = Playlist.query.all()
-        return playlists
+        user_id = get_jwt_identity()
+        user_playlists = Playlist.query.filter_by(user_id=user_id).all()
+        return user_playlists
 
     @playlists_videos_ns.expect(playlist_model)
     @playlists_videos_ns.marshal_with(playlist_model)

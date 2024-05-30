@@ -10,11 +10,12 @@ const LoggedInLinks = () => {
         <Link className="nav-link active text-white" to="/">Home</Link>
       </li>
       <li className="nav-item">
-              <Link className="nav-link active text-white" to="/Playlists">Playlists</Link>
-            </li>
-      <li className="nav-item">
-        <Link className="nav-link active text-white" href="#" onClick={()=>{logout()}} >Log Out</Link>
+          <Link className="nav-link active text-white" to="/Playlists">Playlists</Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link active text-white" to="/" onClick={()=>{logout()}} >Log Out</Link>
+      </li>
+      
     </>
   )
 }
