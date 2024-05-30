@@ -182,6 +182,7 @@ const PlaylistsPage = () => {
    return (
        <div className="container">
        <h1>Playlists</h1>
+       <Button variant="success" onClick={() => setShow(true)}>Create Playlist</Button>
             <div className="playlist-container">
                 {playlists.map(playlist => (
                     <Card key={playlist.id} className="playlist">
@@ -192,53 +193,48 @@ const PlaylistsPage = () => {
                                     <img src={playlist.image_file} alt={playlist.name} className="small-image" />
                                 )}
                             </Link>
-                            <Button variant='primary' onClick={() => showModal(playlist.id)}>Update</Button>
                             <Button variant='danger' onClick={() => showDeleteConfirmModal(playlist.id)}>Delete</Button>
                         </Card.Body>
                     </Card>
                 ))}
             </div>
 
-
-
-
-           <Modal show={show} size='lg' onHide={closeModal}>
-               <Modal.Header closeButton>
-                   <Modal.Title>Update Playlist</Modal.Title>
-               </Modal.Header>
-               <Modal.Body>
-                   <Form onSubmit={handleSubmit(updatePlaylist)}>
-                       <Form.Group>
-                           <Form.Label>Name</Form.Label>
-                           <Form.Control
-                               type="text"
-                               {...register('name', { required: true, maxLength: 25 })}
-                           />
-                           {errors.name && <p style={{ color: 'red' }}><small>Name is required</small></p>}
-                           {errors.name?.type === "maxLength" && <p style={{ color: 'red' }}>
-                               <small>Title should be less than 25 characters</small>
-                           </p>}
-                       </Form.Group>
-                       <Form.Group>
-                           <Form.Label>Image</Form.Label>
-                           <Form.Control
-                               type="text"
-                               {...register('image_file', { required: true, maxLength: 255 })}
-                           />
-                           {errors.image_file && <p style={{ color: 'red' }}><small>Image is required</small></p>}
-                           {errors.image_file?.type === "maxLength" && <p style={{ color: 'red' }}>
-                               <small>Description should be less than 255 characters</small>
-                           </p>}
-                       </Form.Group>
-                       <Modal.Footer>
-                           <Button variant="secondary" onClick={closeModal}>Close</Button>
-                           <Button variant="primary" type="submit">Save</Button>
-                       </Modal.Footer>
-                   </Form>
-               </Modal.Body>
-           </Modal>
-
-
+            <Modal show={show} onHide={closeModal}>
+            <Modal.Header closeButton>
+                <Modal.Title>Create Playlist</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSubmit(createPlaylist)}>
+                    <Form.Group>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            {...register('name', { required: true, maxLength: 25 })}
+                        />
+                        {errors.name && <p style={{ color: 'red' }}><small>Name is required</small></p>}
+                        {errors.name?.type === "maxLength" && <p style={{ color: 'red' }}>
+                            <small>Title should be less than 25 characters</small>
+                        </p>}
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control
+                            type="text"
+                            {...register('image_file', { required: true, maxLength: 255 })}
+                        />
+                        {errors.image_file && <p style={{ color: 'red' }}><small>Image is required</small></p>}
+                        {errors.image_file?.type === "maxLength" && <p style={{ color: 'red' }}>
+                            <small>Description should be less than 255 characters</small>
+                        </p>}
+                    </Form.Group>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={closeModal}>Close</Button>
+                        <Button variant="primary" type="submit">Save</Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal.Body>
+        </Modal>
+                
            <Modal
                show={showDeleteModal}
                onHide={closeModal}
