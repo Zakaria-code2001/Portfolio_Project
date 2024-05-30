@@ -185,7 +185,6 @@ class PlaylistVideosResource(Resource):
 
     @playlists_videos_ns.expect(video_model)
     @playlists_videos_ns.marshal_with(video_model)
-    @jwt_required()
     def post(self, playlist_id):
         """
         Add a new video to a playlist.
@@ -234,7 +233,6 @@ class PlaylistVideoResource(Resource):
 
     @playlists_videos_ns.expect(video_model)
     @playlists_videos_ns.marshal_with(video_model)
-    @jwt_required()
     def put(self, playlist_id, video_id):
         """
         Update a video in a playlist.
@@ -258,7 +256,6 @@ class PlaylistVideoResource(Resource):
         )
         return video_to_update, 201
 
-    @jwt_required()
     def delete(self, playlist_id, video_id):
         """
         Delete a video from a playlist.

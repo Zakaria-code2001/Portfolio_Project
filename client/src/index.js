@@ -26,6 +26,9 @@ const App = () => {
                 <Route path="/Playlists">
                 <PlaylistsPage/>
                 </Route>
+                <Route  path="/playlist/:playlist_id/videos">
+                <VideosPage/>
+                </Route>
                 <Route path="/login">
                 <LoginPage/>
                 </Route>
