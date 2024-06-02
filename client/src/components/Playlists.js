@@ -12,6 +12,7 @@ const PlaylistsPage = () => {
    const [playlistId, setPlaylistId] = useState(0);
    const [showDeleteModal, setShowDeleteModal] = useState(false);
    const [playlistToDelete, setPlaylistToDelete] = useState(null);
+   const [modalType, setModalType] = useState('create'); 
 
 
    useEffect(() => {
@@ -80,17 +81,27 @@ const PlaylistsPage = () => {
    };
 
 
-   const showModal = (id) => {
-       setShow(true);
-       setPlaylistId(id);
+   const showModal = (id, type) => {
+    setShow(true);
+    setModalType(type);
 
+    if (type === 'update') {
+        setPlaylistId(id);
 
-       const selectedPlaylist = playlists.find(playlist => playlist.id === id);
-       if (selectedPlaylist) {
-           setValue('name', selectedPlaylist.name);
-           setValue('image_file', selectedPlaylist.image_file);
-       }
-   };
+        const selectedPlaylist = playlists.find(playlist => playlist.id === id);
+        if (selectedPlaylist) {
+            setValue('name', selectedPlaylist.name);
+            setValue('image_file', selectedPlaylist.image_file);
+        } else {
+            setValue('name', '');
+            setValue('image_file', '');
+        }
+    } else {
+        // Reset form values for create
+        setValue('name', '');
+        setValue('image_file', '');
+    }
+};
 
 
    const updatePlaylist = (data) => {
@@ -180,31 +191,32 @@ const PlaylistsPage = () => {
 
 
    return (
-       <div className="container">
-       <h1>Playlists</h1>
-       <Button variant="success" onClick={() => setShow(true)}>Create Playlist</Button>
-            <div className="playlist-container">
-                {playlists.map(playlist => (
-                    <Card key={playlist.id} className="playlist">
-                        <Card.Body>
-                            <Card.Title>{playlist.name}</Card.Title>
-                            <Link to={`/playlist/${playlist.id}/videos`}>
-                                {playlist.image_file && (
-                                    <img src={playlist.image_file} alt={playlist.name} className="small-image" />
-                                )}
-                            </Link>
-                            <Button variant='danger' onClick={() => showDeleteConfirmModal(playlist.id)}>Delete</Button>
-                        </Card.Body>
-                    </Card>
-                ))}
-            </div>
+    <div className="container">
+        <h1>Playlists</h1>
+        <Button variant="success" onClick={() => showModal(null, 'create')}>Create Playlist</Button>
+        <div className="playlist-container">
+            {playlists.map(playlist => (
+                <Card key={playlist.id} className="playlist">
+                    <Card.Body>
+                        <Card.Title>{playlist.name}</Card.Title>
+                        <Link to={`/playlist/${playlist.id}/videos`}>
+                            {playlist.image_file && (
+                                <img src={playlist.image_file} alt={playlist.name} className="small-image" />
+                            )}
+                        </Link>
+                        <Button variant="warning" onClick={() => showModal(playlist.id, 'update')}>Edit</Button>
+                        <Button variant='danger' onClick={() => showDeleteConfirmModal(playlist.id)}>Delete</Button>
+                    </Card.Body>
+                </Card>
+            ))}
+        </div>
 
-            <Modal show={show} onHide={closeModal}>
+        <Modal show={show} onHide={closeModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Create Playlist</Modal.Title>
+                <Modal.Title>{modalType === 'create' ? 'Create Playlist' : 'Update Playlist'}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={handleSubmit(createPlaylist)}>
+                <Form onSubmit={handleSubmit(modalType === 'create' ? createPlaylist : updatePlaylist)}>
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
@@ -234,27 +246,26 @@ const PlaylistsPage = () => {
                 </Form>
             </Modal.Body>
         </Modal>
-                
-           <Modal
-               show={showDeleteModal}
-               onHide={closeModal}
-               backdrop="static"
-               keyboard={false}
-           >
-               <Modal.Header closeButton>
-                   <Modal.Title>Delete Playlist</Modal.Title>
-               </Modal.Header>
-               <Modal.Body>
-                   Are you sure you want to delete this playlist?
-               </Modal.Body>
-               <Modal.Footer>
-                   <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                   <Button variant="danger" onClick={deletePlaylist}>Delete</Button>
-               </Modal.Footer>
-           </Modal>
-       </div>
-   );
-};
 
+        <Modal
+            show={showDeleteModal}
+            onHide={closeModal}
+            backdrop="static"
+            keyboard={false}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>Delete Playlist</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                Are you sure you want to delete this playlist?
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={closeModal}>Cancel</Button>
+                <Button variant="danger" onClick={deletePlaylist}>Delete</Button>
+            </Modal.Footer>
+        </Modal>
+    </div>
+);
+}
 
 export default PlaylistsPage;

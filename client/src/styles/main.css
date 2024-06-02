@@ -16,22 +16,21 @@
     margin: 20px;
   }
   
-  .playlist {
-    width: 300px;
-    margin: 10px;
-  }
-  
-  .playlist .card-body {
-    text-align: center;
-  }
-  
-  .playlist img {
-    max-width: 100%;
-    height: auto;
-  }
+.playlist {
+  width: 300px;
+  margin: 10px;
+}
 
-  .video-container{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-  }
+.playlist .card-body {
+  text-align: center;
+}
+
+.playlist img {
+  max-width: 100%;
+  height: auto;
+}
+.video-container{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
