@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button, Modal,  Form} from 'react-bootstrap';
+import BASEURL from "./config";
 
 const VideosPage = () => {
     const { playlist_id } = useParams();
@@ -10,7 +11,7 @@ const VideosPage = () => {
     const [showCreateModal, setShowCreateModal] = useState(false);
 
     useEffect(() => {
-        fetch(`/playlist_video/playlist/${playlist_id}/videos`)
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
             .then(response => response.json())
             .then(data => {
                 setVideos(data);
@@ -39,7 +40,7 @@ const VideosPage = () => {
 
     const deleteVideo = () => {
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
-        fetch(`/playlist_video/playlist/${playlist_id}/video/${videoToDelete.id}`, {
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/video/${videoToDelete.id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`,
@@ -129,7 +130,7 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         };
         // Send data to create video endpoint
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
-        fetch(`/playlist_video/playlist/${playlistId}/videos`, {
+        fetch(`${BASEURL}/playlist_video/playlist/${playlistId}/videos`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(token)}`,

@@ -3,6 +3,7 @@ import { Form, Button, Card, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
+import BASEURL from "./config";
 
 
 const PlaylistsPage = () => {
@@ -26,7 +27,7 @@ const PlaylistsPage = () => {
        const user_id = decodedToken.sub;
 
 
-       fetch(`/playlist_video/playlists?user_id=${user_id}`, {
+       fetch(`${BASEURL}/playlist_video/playlists?user_id=${user_id}`, {
            headers: {
                'Authorization': `Bearer ${JSON.parse(token)}`,
                'Content-Type': 'application/json',
@@ -65,7 +66,7 @@ const PlaylistsPage = () => {
        };
 
 
-       fetch(`/playlist_video/playlist/${playlistToDelete}`, requestOptions)
+       fetch(`${BASEURL}/playlist_video/playlist/${playlistToDelete}`, requestOptions)
            .then(res => {
                if (!res.ok) {
                    throw new Error('Network response was not ok');
@@ -127,7 +128,7 @@ const PlaylistsPage = () => {
        };
 
 
-       fetch(`/playlist_video/playlist/${playlistId}`, requestOptions)
+       fetch(`${BASEURL}/playlist_video/playlist/${playlistId}`, requestOptions)
            .then(res => {
                if (!res.ok) {
                    throw new Error('Network response was not ok');
@@ -167,7 +168,7 @@ const PlaylistsPage = () => {
        };
 
 
-       fetch('/playlist_video/playlists', requestOptions)
+       fetch('${BASEURL}/playlist_video/playlists', requestOptions)
            .then(res => {
                if (!res.ok) {
                    throw new Error('Network response was not ok');

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button, Alert, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
+import BASEURL from "./config";
 
 const SignUpPage = () => {
 
@@ -29,7 +30,7 @@ const SignUpPage = () => {
                 body: JSON.stringify(body)
             }
 
-            fetch('/auth/signup', requestOptions)
+            fetch(`${BASEURL}/auth/signup`, requestOptions)
                 .then(res => res.json())
                 .then(data =>{ 
                     console.log(data)
