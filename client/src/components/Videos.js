@@ -49,7 +49,6 @@ const VideosPage = () => {
             console.log('Video deleted successfully:', data);
             setVideos(videos.filter(video => video.id !== videoToDelete.id));
             setVideoToDelete(null);
-            window.location.href = `${BASEURL}`; 
         })
         .catch(error => {
             console.error('Error deleting video:', error);
@@ -96,7 +95,15 @@ const VideosPage = () => {
                         <div className="video-wrapper">
                             <VideoPlayer url={video.url} />
                         </div>
-                        <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
+                        <Button
+                          variant="danger"
+                          onClick={() => {
+                            handleDelete(video);
+                            window.location.href = 'https://portfolio-project-1-vs55.onrender.com/';
+                          }}
+                        >
+                          Delete
+                        </Button>
                     </Card>
                 ))}
             </div>
