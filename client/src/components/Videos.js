@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Card, Button, Form } from 'react-bootstrap';
 import BASEURL from "./config";
 
@@ -9,7 +9,6 @@ const VideosPage = () => {
     const [videoToDelete, setVideoToDelete] = useState(null);
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
-    const [shouldRedirect, setShouldRedirect] = useState(false);
 
     useEffect(() => {
         fetchVideos();
@@ -50,7 +49,7 @@ const VideosPage = () => {
             console.log('Video deleted successfully:', data);
             setVideos(videos.filter(video => video.id !== videoToDelete.id));
             setVideoToDelete(null);
-            setShouldRedirect(true);
+            window.location.href = `${BASEURL}`; 
         })
         .catch(error => {
             console.error('Error deleting video:', error);
