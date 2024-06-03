@@ -91,7 +91,6 @@ const VideosPage = () => {
     return (
         <div className="videos-page">
     <h1>Videos</h1>
-    <Button variant="primary" onClick={handleCreate}>Create Video</Button>
     <div className="video-container">
         {videos.map(video => (
             <Card key={video.id} title={video.title} description={video.description} className="video-card">
