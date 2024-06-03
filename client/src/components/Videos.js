@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom'; 
+import { useParams, Redirect } from 'react-router-dom';
 import { Card, Button, Form } from 'react-bootstrap';
 import BASEURL from "./config";
 
@@ -9,11 +9,11 @@ const VideosPage = () => {
     const [videoToDelete, setVideoToDelete] = useState(null);
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
-    const history = useHistory(); 
+    const [shouldRedirect, setShouldRedirect] = useState(false);
 
     useEffect(() => {
         fetchVideos();
-    }, [playlist_id]); // Fetch videos whenever playlist_id changes
+    }, [playlist_id]);
     
     const fetchVideos = () => {
         fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
@@ -50,7 +50,7 @@ const VideosPage = () => {
             console.log('Video deleted successfully:', data);
             setVideos(videos.filter(video => video.id !== videoToDelete.id));
             setVideoToDelete(null);
-            history.push('/');
+            setShouldRedirect(true);
         })
         .catch(error => {
             console.error('Error deleting video:', error);
@@ -90,30 +90,31 @@ const VideosPage = () => {
 
     return (
         <div className="videos-page">
-          <h1>Videos</h1>
-          <div className="video-container">
-            {videos.map(video => (
-              <Card key={video.id} title={video.title} description={video.description} className="video-card">
-                <div className="video-wrapper">
-                  <VideoPlayer url={video.url} />
-                </div>
-                <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
-              </Card>
-            ))}
-          </div>
-          <Form className="create-video-form">
-            <Form.Group controlId="title">
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="url">
-              <Form.Label>URL</Form.Label>
-              <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
-            </Form.Group>
-            <Button variant="primary" onClick={handleCreate}>Create</Button>
-          </Form>
+            {shouldRedirect && <Redirect to="/" />}
+            <h1>Videos</h1>
+            <div className="video-container">
+                {videos.map(video => (
+                    <Card key={video.id} title={video.title} description={video.description} className="video-card">
+                        <div className="video-wrapper">
+                            <VideoPlayer url={video.url} />
+                        </div>
+                        <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
+                    </Card>
+                ))}
+            </div>
+            <Form className="create-video-form">
+                <Form.Group controlId="title">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId="url">
+                    <Form.Label>URL</Form.Label>
+                    <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
+                </Form.Group>
+                <Button variant="primary" onClick={handleCreate}>Create</Button>
+            </Form>
         </div>
-      );
+    );
 };
 
 const VideoPlayer = ({ url }) => {
