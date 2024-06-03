@@ -73,10 +73,11 @@ const PlaylistsPage = () => {
                return res.json();
            })
            .then(data => {
-               console.log('Playlist deleted successfully:', data);
-               fetchPlaylists();
-               closeModal();
-           })
+            console.log('Playlist deleted successfully:', data);
+            fetchPlaylists();
+            closeModal();
+            window.location.reload()
+            })
            .catch(err => console.error('Error deleting playlist:', err));
    };
 
@@ -97,7 +98,6 @@ const PlaylistsPage = () => {
             setValue('image_file', '');
         }
     } else {
-        // Reset form values for create
         setValue('name', '');
         setValue('image_file', '');
     }
