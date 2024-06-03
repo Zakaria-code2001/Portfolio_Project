@@ -26,7 +26,6 @@ const VideosPage = () => {
     const handleShowCreateModal = () => {
         setShowCreateModal(true);
     };
-    
 
     const handleCloseCreateModal = () => {
         setShowCreateModal(false);
@@ -124,7 +123,6 @@ const getYouTubeVideoId = (url) => {
     return videoId;
 };
 
-<CreateVideoModal show={showCreateModal} onHide={handleCloseCreateModal} playlistId={playlist_id} handleCloseCreateModal={handleCloseCreateModal} />
 const CreateVideoModal = ({ show, onHide, playlistId }) => {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
