@@ -168,7 +168,7 @@ const PlaylistsPage = () => {
        };
 
 
-       fetch('${BASEURL}/playlist_video/playlists', requestOptions)
+       fetch(`${BASEURL}/playlist_video/playlists`, requestOptions)
            .then(res => {
                if (!res.ok) {
                    throw new Error('Network response was not ok');
