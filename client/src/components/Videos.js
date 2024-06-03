@@ -88,13 +88,15 @@ const VideosPage = () => {
         });
     };
 
-    return (
-        <div className="videos-page">
+return (
+<div className="videos-page">
     <h1>Videos</h1>
     <div className="video-container">
         {videos.map(video => (
             <Card key={video.id} title={video.title} description={video.description} className="video-card">
-                <VideoPlayer url={video.url} />
+                <div className="video-wrapper">
+                    <VideoPlayer url={video.url} />
+                </div>
                 <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
             </Card>
         ))}
@@ -110,8 +112,7 @@ const VideosPage = () => {
         </Form.Group>
         <Button variant="primary" onClick={handleCreate}>Create</Button>
     </Form>
-</div>
-    );
+</div>);
 };
 
 const VideoPlayer = ({ url }) => {
