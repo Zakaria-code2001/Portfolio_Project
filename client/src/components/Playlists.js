@@ -206,16 +206,7 @@ const PlaylistsPage = () => {
                             )}
                         </Link>
                         <Button variant="warning" onClick={() => showModal(playlist.id, 'update')}>Edit</Button>
-                        <Button
-                            variant="danger"
-                            onClick={() => {
-                                setPlaylistToDelete(playlist.id);
-                                deletePlaylist();
-                                window.location.href = 'https://portfolio-project-1-vs55.onrender.com/';
-                            }}
-                        >
-                            Delete
-                        </Button>
+                        <Button variant='danger' onClick={() => showDeleteConfirmModal(playlist.id)}>Delete</Button>
                     </Card.Body>
                 </Card>
             ))}
@@ -271,14 +262,10 @@ const PlaylistsPage = () => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                <Button
-                  variant="danger"
-                  onClick={() => {
+                <Button variant="danger" onClick={() => {
                     deletePlaylist();
                     window.location.href = 'https://portfolio-project-1-vs55.onrender.com/';
-                  }}
-                >Delete
-                </Button>
+                  }}>Delete</Button>
             </Modal.Footer>
         </Modal>
     </div>
