@@ -52,7 +52,7 @@
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+  padding-left: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
 }
 
 .video-player {
