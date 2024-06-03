@@ -22,17 +22,6 @@ const VideosPage = () => {
                 console.error('Error fetching videos:', error);
             });
     }, [playlist_id]); // Fetch videos whenever playlist_id changes
-
-    const fetchVideos = () => {
-        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
-            .then(response => response.json())
-            .then(data => {
-                setVideos(data);
-            })
-            .catch(error => {
-                console.error('Error fetching videos:', error);
-            });
-    };
     
     const handleShowCreateModal = () => {
         setShowCreateModal(true);
@@ -132,6 +121,16 @@ const getYouTubeVideoId = (url) => {
         videoId = url.split('/').pop();
     }
     return videoId;
+};
+const fetchVideos = () => {
+    fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
+        .then(response => response.json())
+        .then(data => {
+            setVideos(data);
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+        });
 };
 const CreateVideoModal = ({ show, onHide, playlistId }) => {
     const [title, setTitle] = useState('');
