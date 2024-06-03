@@ -36,10 +36,12 @@
 
 .video-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
 }
-
+.video-url-player {
+  width: 300px;
+}
 .video-card {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -49,18 +51,9 @@
   flex-direction: column;
 }
 
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  padding-left: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
-}
-
 .video-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  flex-grow: 1;
+  margin-bottom: 10px;
 }
 
 .create-video-form {
