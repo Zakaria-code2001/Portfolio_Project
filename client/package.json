@@ -20,8 +20,10 @@
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
-  
-  "proxy": "https://portfolio-project-rpun.onrender.com",
+  "engines": {
+    "node": "20.x"
+  },
+  "proxy": "https://portfolio-project-rpun.onrender.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
