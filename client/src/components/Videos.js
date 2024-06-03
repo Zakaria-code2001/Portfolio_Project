@@ -39,6 +39,16 @@ const VideosPage = () => {
         setShowDeleteModal(false);
         setVideoToDelete(null);
     };
+    const handleFetchVideos = () => {
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
+            .then(response => response.json())
+            .then(data => {
+                setVideos(data);
+            })
+            .catch(error => {
+                console.error('Error fetching videos:', error);
+            });
+    };
 
     const deleteVideo = () => {
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
@@ -151,6 +161,8 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         .then(data => {
             console.log('Video created successfully:', data);
             onHide();
+            setShowCreateModal(false);
+            handleFetchVideos(); 
 
         })
         .catch(error => {
