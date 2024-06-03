@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import BASEURL from "./config";
+import { useHistory } from 'react-router-dom';
 
 
 const PlaylistsPage = () => {
@@ -77,7 +78,7 @@ const PlaylistsPage = () => {
             console.log('Playlist deleted successfully:', data);
             fetchPlaylists();
             closeModal();
-            window.location.reload()
+            history.push('/');
             })
            .catch(err => console.error('Error deleting playlist:', err));
    };

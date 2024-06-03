@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button, Modal,  Form} from 'react-bootstrap';
 import BASEURL from "./config";
+import { useHistory } from 'react-router-dom';
 
 const VideosPage = () => {
     const { playlist_id } = useParams();
@@ -57,6 +58,7 @@ const VideosPage = () => {
             console.log('Video deleted successfully:', data);
             setVideos(videos.filter(video => video.id !== videoToDelete.id));
             handleCloseDeleteModal();
+            history.push('/');
         })
         .catch(error => {
             console.error('Error deleting video:', error);
