@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Card, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import BASEURL from "./config";
-import { useHistory } from 'react-router-dom';
 
 
 const PlaylistsPage = () => {
@@ -14,7 +13,8 @@ const PlaylistsPage = () => {
    const [playlistId, setPlaylistId] = useState(0);
    const [showDeleteModal, setShowDeleteModal] = useState(false);
    const [playlistToDelete, setPlaylistToDelete] = useState(null);
-   const [modalType, setModalType] = useState('create'); 
+   const [modalType, setModalType] = useState('create');
+   const history = useHistory(); 
 
 
    useEffect(() => {
