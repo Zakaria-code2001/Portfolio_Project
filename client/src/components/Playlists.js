@@ -206,7 +206,15 @@ const PlaylistsPage = () => {
                             )}
                         </Link>
                         <Button variant="warning" onClick={() => showModal(playlist.id, 'update')}>Edit</Button>
-                        <Button variant='danger' onClick={() => showDeleteConfirmModal(playlist.id)}>Delete</Button>
+                        <Button
+                            variant="danger"
+                            onClick={() => {
+                                setPlaylistToDelete(playlist.id);
+                                deletePlaylist();
+                            }}
+                        >
+                            Delete
+                        </Button>
                     </Card.Body>
                 </Card>
             ))}
