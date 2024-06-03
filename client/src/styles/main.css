@@ -39,9 +39,7 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
 }
-.video-url-player {
-  width: 300px;
-}
+
 .video-card {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -51,9 +49,20 @@
   flex-direction: column;
 }
 
-.video-player {
-  flex-grow: 1;
-  margin-bottom: 10px;
+.video-wrapper {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  position: relative;
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .create-video-form {

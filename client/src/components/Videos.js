@@ -88,32 +88,32 @@ const VideosPage = () => {
         });
     };
 
-return (
-<div className="videos-page">
-    <h1>Videos</h1>
-    <div className="video-container">
-        {videos.map(video => (
-            <Card key={video.id} title={video.title} description={video.description} className="video-card">
+    return (
+        <div className="videos-page">
+          <h1>Videos</h1>
+          <div className="video-container">
+            {videos.map(video => (
+              <Card key={video.id} title={video.title} description={video.description} className="video-card">
                 <div className="video-wrapper">
-                    <VideoPlayer url={video.url} />
+                  <VideoPlayer url={video.url} />
                 </div>
                 <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
-            </Card>
-        ))}
-    </div>
-    <Form className="create-video-form">
-        <Form.Group controlId="title">
-            <Form.Label>Title</Form.Label>
-            <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
-        </Form.Group>
-        <Form.Group controlId="url">
-            <Form.Label>URL</Form.Label>
-            <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
-        </Form.Group>
-        <Button variant="primary" onClick={handleCreate}>Create</Button>
-    </Form>
-</div>
-    );
+              </Card>
+            ))}
+          </div>
+          <Form className="create-video-form">
+            <Form.Group controlId="title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
+            </Form.Group>
+            <Form.Group controlId="url">
+              <Form.Label>URL</Form.Label>
+              <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
+            </Form.Group>
+            <Button variant="primary" onClick={handleCreate}>Create</Button>
+          </Form>
+        </div>
+      );
 };
 
 const VideoPlayer = ({ url }) => {
