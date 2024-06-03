@@ -88,7 +88,8 @@ const VideosPage = () => {
         });
     };
 
-    <div className="videos-page">
+    return (
+        <div className="videos-page">
     <h1>Videos</h1>
     <Button variant="primary" onClick={handleCreate}>Create Video</Button>
     <div className="video-container">
@@ -111,6 +112,8 @@ const VideosPage = () => {
         <Button variant="primary" onClick={handleCreate}>Create</Button>
     </Form>
 </div>
+    );
+};
 
 const VideoPlayer = ({ url }) => {
     if (url.includes('youtube.com') || url.includes('youtu.be')) {
