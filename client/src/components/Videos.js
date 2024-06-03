@@ -89,7 +89,6 @@ const VideosPage = () => {
 
     return (
         <div className="videos-page">
-            {shouldRedirect && <Redirect to="/" />}
             <h1>Videos</h1>
             <div className="video-container">
                 {videos.map(video => (
