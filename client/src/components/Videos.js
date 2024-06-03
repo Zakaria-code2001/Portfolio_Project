@@ -23,6 +23,17 @@ const VideosPage = () => {
             });
     }, [playlist_id]); // Fetch videos whenever playlist_id changes
 
+    const fetchVideos = () => {
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
+            .then(response => response.json())
+            .then(data => {
+                setVideos(data);
+            })
+            .catch(error => {
+                console.error('Error fetching videos:', error);
+            });
+    };
+    
     const handleShowCreateModal = () => {
         setShowCreateModal(true);
     };
