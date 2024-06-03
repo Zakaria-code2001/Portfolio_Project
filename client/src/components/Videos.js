@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom'; 
 import { Card, Button, Modal,  Form} from 'react-bootstrap';
 import BASEURL from "./config";
-import { useHistory } from 'react-router-dom';
+
 
 const VideosPage = () => {
     const { playlist_id } = useParams();
@@ -10,6 +10,7 @@ const VideosPage = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [videoToDelete, setVideoToDelete] = useState(null);
     const [showCreateModal, setShowCreateModal] = useState(false);
+    const history = useHistory(); 
 
     useEffect(() => {
         fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
@@ -148,8 +149,8 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         })
         .then(data => {
             console.log('Video created successfully:', data);
-            handleCloseCreateModal(); // Close the create modal
-            fetchVideos(); // Fetch updated list of videos
+            onHide();
+            fetchVideos();
         })
         .catch(error => {
             console.error('Error creating video:', error);
