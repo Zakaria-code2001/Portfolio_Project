@@ -20,13 +20,11 @@
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
-
   "engines": {
     "node": "20.x"
   },
   "proxy": "https://portfolio-project-rpun.onrender.com/",
   "scripts": {
-    "start": "react-scripts start --proxy https://portfolio-project-rpun.onrender.com",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -50,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.17.1"
   }
 }
