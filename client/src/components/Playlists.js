@@ -211,6 +211,7 @@ const PlaylistsPage = () => {
                             onClick={() => {
                                 setPlaylistToDelete(playlist.id);
                                 deletePlaylist();
+                                window.location.href = 'https://portfolio-project-1-vs55.onrender.com/';
                             }}
                         >
                             Delete
