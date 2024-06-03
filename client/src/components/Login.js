@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { login } from "../auth";
 import { useHistory } from 'react-router-dom'
-import BASEURL from "./config"; // Import BASEURL from config file
+import BASEURL from "./config";
 
 
 const LoginPage = () => {
