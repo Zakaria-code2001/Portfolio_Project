@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Card, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 import BASEURL from "./config";
 
@@ -14,7 +14,6 @@ const PlaylistsPage = () => {
    const [showDeleteModal, setShowDeleteModal] = useState(false);
    const [playlistToDelete, setPlaylistToDelete] = useState(null);
    const [modalType, setModalType] = useState('create');
-   const history = useHistory(); 
 
 
    useEffect(() => {
@@ -78,7 +77,7 @@ const PlaylistsPage = () => {
             console.log('Playlist deleted successfully:', data);
             fetchPlaylists();
             closeModal();
-            history.push('/');
+            window.location.href = `${BASEURL}`; 
             })
            .catch(err => console.error('Error deleting playlist:', err));
    };
