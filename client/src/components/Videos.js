@@ -151,7 +151,7 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         .then(data => {
             console.log('Video created successfully:', data);
             onHide();
-            handleCloseCreateModal();
+            setShowCreateModal(false);
 
         })
         .catch(error => {
