@@ -24,7 +24,7 @@
   "engines": {
     "node": "20.x"
   },
-  "proxy": "http://localhost:10000",
+  "proxy": "https://portfolio-project-rpun.onrender.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
