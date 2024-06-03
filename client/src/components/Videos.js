@@ -146,8 +146,8 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         })
         .then(data => {
             console.log('Video created successfully:', data);
-            onHide();
-            window.location.reload()
+            handleCloseCreateModal(); // Close the create modal
+            fetchVideos(); // Fetch updated list of videos
         })
         .catch(error => {
             console.error('Error creating video:', error);
