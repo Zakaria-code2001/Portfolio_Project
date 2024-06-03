@@ -78,7 +78,7 @@ const PlaylistsPage = () => {
             console.log('Playlist deleted successfully:', data);
             fetchPlaylists();
             closeModal();
-            history.push('/')
+            history.push('/');
             })
            .catch(err => console.error('Error deleting playlist:', err));
    };
