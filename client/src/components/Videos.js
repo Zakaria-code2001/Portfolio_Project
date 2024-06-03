@@ -88,32 +88,29 @@ const VideosPage = () => {
         });
     };
 
-    return (
-        <div>
-            <h1>Videos</h1>
-            <Button variant="primary" onClick={handleCreate}>Create Video</Button>
-            <div className="video-container">
-                {videos.map(video => (
-                    <Card key={video.id} title={video.title} description={video.description}>
-                        <VideoPlayer url={video.url} />
-                        <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
-                    </Card>
-                ))}
-            </div>
-            <Form>
-                <Form.Group controlId="title">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
-                </Form.Group>
-                <Form.Group controlId="url">
-                    <Form.Label>URL</Form.Label>
-                    <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
-                </Form.Group>
-                <Button variant="primary" onClick={handleCreate}>Create</Button>
-            </Form>
-        </div>
-    );
-};
+    <div className="videos-page">
+    <h1>Videos</h1>
+    <Button variant="primary" onClick={handleCreate}>Create Video</Button>
+    <div className="video-container">
+        {videos.map(video => (
+            <Card key={video.id} title={video.title} description={video.description} className="video-card">
+                <VideoPlayer url={video.url} />
+                <Button variant="danger" onClick={() => handleDelete(video)}>Delete</Button>
+            </Card>
+        ))}
+    </div>
+    <Form className="create-video-form">
+        <Form.Group controlId="title">
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="url">
+            <Form.Label>URL</Form.Label>
+            <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
+        </Form.Group>
+        <Button variant="primary" onClick={handleCreate}>Create</Button>
+    </Form>
+</div>
 
 const VideoPlayer = ({ url }) => {
     if (url.includes('youtube.com') || url.includes('youtu.be')) {

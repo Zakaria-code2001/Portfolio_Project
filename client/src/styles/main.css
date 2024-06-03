@@ -29,8 +29,32 @@
   max-width: 100%;
   height: auto;
 }
-.video-container{
-  display: flex;
-  flex-wrap: wrap;
-  margin: 20px;
+
+.videos-page {
+  padding: 20px;
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.video-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-video-form {
+  margin-top: 20px;
+}
+
+.create-video-form input {
+  margin-bottom: 10px;
+}
+
+.create-video-form button {
+  margin-top: 10px;
 }
