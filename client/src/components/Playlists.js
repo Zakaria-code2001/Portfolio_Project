@@ -262,7 +262,14 @@ const PlaylistsPage = () => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                <Button variant="danger" onClick={deletePlaylist}>Delete</Button>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    deletePlaylist();
+                    window.location.href = 'https://portfolio-project-1-vs55.onrender.com/';
+                  }}
+                >Delete
+                </Button>
             </Modal.Footer>
         </Modal>
     </div>
