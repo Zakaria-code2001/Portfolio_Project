@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom'; 
-import { Card, Button, Modal,  Form} from 'react-bootstrap';
-import BASEURL from "./config";
-
+import React, { useEffect, useState, useCallback } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { Card, Button, Modal, Form } from 'react-bootstrap';
+import BASEURL from './config';
 
 const VideosPage = () => {
     const { playlist_id } = useParams();
@@ -10,81 +9,76 @@ const VideosPage = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [videoToDelete, setVideoToDelete] = useState(null);
     const [showCreateModal, setShowCreateModal] = useState(false);
-    const history = useHistory(); 
+    const history = useHistory();
+
+    const fetchVideos = useCallback(() => {
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
+            .then(response => response.json())
+            .then(data => setVideos(data))
+            .catch(error => console.error('Error fetching videos:', error));
+    }, [playlist_id]);
 
     useEffect(() => {
-        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
-            .then(response => response.json())
-            .then(data => {
-                setVideos(data);
-            })
-            .catch(error => {
-                console.error('Error fetching videos:', error);
-            });
-    }, [playlist_id]); // Fetch videos whenever playlist_id changes
-    
-    const handleShowCreateModal = () => {
-        setShowCreateModal(true);
-    };
+        fetchVideos();
+    }, [fetchVideos]);
 
-    const handleCloseCreateModal = () => {
+    const handleShowCreateModal = useCallback(() => {
+        setShowCreateModal(true);
+    }, []);
+
+    const handleCloseCreateModal = useCallback(() => {
         setShowCreateModal(false);
-    };
-    const handleShowDeleteModal = (video) => {
+    }, []);
+
+    const handleShowDeleteModal = useCallback(video => {
         setVideoToDelete(video);
         setShowDeleteModal(true);
-    };
+    }, []);
 
-    const handleCloseDeleteModal = () => {
+    const handleCloseDeleteModal = useCallback(() => {
         setShowDeleteModal(false);
         setVideoToDelete(null);
-    };
-    const handleFetchVideos = () => {
-        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
-            .then(response => response.json())
-            .then(data => {
-                setVideos(data);
-            })
-            .catch(error => {
-                console.error('Error fetching videos:', error);
-            });
-    };
+    }, []);
 
     const deleteVideo = () => {
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
         fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/video/${videoToDelete.id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${JSON.parse(token)}`,
-                'Content-Type': 'application/json'
-            }
+                Authorization: `Bearer ${JSON.parse(token)}`,
+                'Content-Type': 'application/json',
+            },
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Video deleted successfully:', data);
-            setVideos(videos.filter(video => video.id !== videoToDelete.id));
-            handleCloseDeleteModal();
-            history.push('/');
-        })
-        .catch(error => {
-            console.error('Error deleting video:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Video deleted successfully:', data);
+                setVideos(videos.filter(video => video.id !== videoToDelete.id));
+                handleCloseDeleteModal();
+                history.push('/');
+            })
+            .catch(error => {
+                console.error('Error deleting video:', error);
+            });
     };
 
     return (
         <div>
             <h1>Videos</h1>
-            <Button variant="primary" onClick={handleShowCreateModal}>Create Video</Button>
+            <Button variant="primary" onClick={handleShowCreateModal}>
+                Create Video
+            </Button>
             <div className="video-container">
                 {videos.map(video => (
                     <Card key={video.id} title={video.title} description={video.description}>
                         <VideoPlayer url={video.url} />
-                        <Button variant="danger" onClick={() => handleShowDeleteModal(video)}>Delete</Button>
+                        <Button variant="danger" onClick={() => handleShowDeleteModal(video)}>
+                            Delete
+                        </Button>
                     </Card>
                 ))}
             </div>
@@ -93,12 +87,14 @@ const VideosPage = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Delete Video</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    Are you sure you want to delete this video?
-                </Modal.Body>
+                <Modal.Body>Are you sure you want to delete this video?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseDeleteModal}>Cancel</Button>
-                    <Button variant="danger" onClick={deleteVideo}>Delete</Button>
+                    <Button variant="secondary" onClick={handleCloseDeleteModal}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={deleteVideo}>
+                        Delete
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </div>
@@ -123,7 +119,7 @@ const VideoPlayer = ({ url }) => {
     }
 };
 
-const getYouTubeVideoId = (url) => {
+const getYouTubeVideoId = url => {
     let videoId = '';
     if (url.includes('youtube.com')) {
         videoId = url.split('v=')[1];
@@ -140,34 +136,31 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
     const handleCreate = () => {
         const data = {
             title: title,
-            url: url
+            url: url,
         };
-        // Send data to create video endpoint
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
         fetch(`${BASEURL}/playlist_video/playlist/${playlistId}/videos`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JSON.parse(token)}`,
-                'Content-Type': 'application/json'
+                Authorization: `Bearer ${JSON.parse(token)}`,
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Video created successfully:', data);
-            onHide();
-            setShowCreateModal(false);
-            handleFetchVideos(); 
-
-        })
-        .catch(error => {
-            console.error('Error creating video:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Video created successfully:', data);
+                onHide();
+                fetchVideos();
+            })
+            .catch(error => {
+                console.error('Error creating video:', error);
+            });
     };
 
     return (
@@ -188,8 +181,12 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={onHide}>Cancel</Button>
-                <Button variant="primary" onClick={handleCreate}>Create</Button>
+                <Button variant="secondary" onClick={onHide}>
+                    Cancel
+                </Button>
+                <Button variant="primary" onClick={handleCreate}>
+                    Create
+                </Button>
             </Modal.Footer>
         </Modal>
     );
