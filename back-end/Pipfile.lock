@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "727eea7c4e99b3327bea888600d325cf74f9e5b3dfcc2c57a904b2f32e20350a"
+            "sha256": "61049560c34d26528c7005ede928f33f1f8b8f524642559ab19cf66bf1b093ec"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -171,6 +171,15 @@
             "markers": "platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32')))))",
             "version": "==3.0.3"
         },
+        "gunicorn": {
+            "hashes": [
+                "sha256:350679f91b24062c86e386e198a15438d53a7a8207235a78ba1b53df4c4378d9",
+                "sha256:4a0b436239ff76fb33f11c07a16482c521a7e09c1ce3cc293c2330afe01bec63"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.7'",
+            "version": "==22.0.0"
+        },
         "importlib-resources": {
             "hashes": [
                 "sha256:50d10f043df931902d4194ea07ec57960f66a80449ff867bfe782b4c486ba78c",
@@ -284,6 +293,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.1.5"
+        },
+        "packaging": {
+            "hashes": [
+                "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5",
+                "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==24.0"
         },
         "pyjwt": {
             "hashes": [
@@ -487,11 +504,11 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:8cbcdc8606ebcb0d95453ad7dc5065e6237b6aa230a31e81d0f440c30fed5fd8",
-                "sha256:b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594"
+                "sha256:6024b58b69089e5a89c347397254e35f1bf02a907728ec7fee9bf0fe837d203a",
+                "sha256:915f5e35ff76f56588223f15fdd5938f9a1cf9195c0de25130c627e4d597f6d1"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==4.12.0"
+            "version": "==4.12.1"
         },
         "werkzeug": {
             "hashes": [
