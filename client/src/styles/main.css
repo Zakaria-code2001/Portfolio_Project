@@ -36,7 +36,7 @@
 
 .video-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 20px;
 }
 
@@ -50,12 +50,17 @@
 }
 
 .video-wrapper {
+  position: relative;
   width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
 }
 
 .video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .create-video-form {

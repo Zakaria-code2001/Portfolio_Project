@@ -112,7 +112,8 @@ return (
         </Form.Group>
         <Button variant="primary" onClick={handleCreate}>Create</Button>
     </Form>
-</div>);
+</div>
+    );
 };
 
 const VideoPlayer = ({ url }) => {
