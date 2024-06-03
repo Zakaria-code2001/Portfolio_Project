@@ -122,16 +122,7 @@ const getYouTubeVideoId = (url) => {
     }
     return videoId;
 };
-const fetchVideos = () => {
-    fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
-        .then(response => response.json())
-        .then(data => {
-            setVideos(data);
-        })
-        .catch(error => {
-            console.error('Error fetching videos:', error);
-        });
-};
+
 const CreateVideoModal = ({ show, onHide, playlistId }) => {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
@@ -160,7 +151,8 @@ const CreateVideoModal = ({ show, onHide, playlistId }) => {
         .then(data => {
             console.log('Video created successfully:', data);
             onHide();
-            fetchVideos();
+            handleCloseCreateModal();
+
         })
         .catch(error => {
             console.error('Error creating video:', error);
