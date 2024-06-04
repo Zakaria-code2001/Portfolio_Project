@@ -76,6 +76,16 @@
 .create-video-form button {
   margin-top: 10px;
 }
+
 .navbar-toggler {
-  color: #fff; /* Set color to white */
+  width: 30px; /* Set width */
+  height: 30px; /* Set height */
+  padding: 5px; /* Add padding */
+  background-image: url('./ham.png'); /* Set background image */
+  background-size: cover; /* Scale the background image to cover the entire button */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  background-position: center; /* Center the background image */
+  border: none; /* Remove border */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
+

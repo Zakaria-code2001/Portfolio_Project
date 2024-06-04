@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 import { useAuth, logout } from '../auth'
+import '../styles/main.css';
 
 const LoggedInLinks = () => {
   return (
