@@ -7,8 +7,7 @@ import NavBar from './components/Navbar';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
 } from 'react-router-dom'
 import PlaylistsPage from './components/Playlists';
 import LoginPage from './components/Login';
@@ -16,13 +15,13 @@ import SignUpPage from './components/SignUp';
 import HomePage from './components/Home';
 import VideosPage from './components/Videos'
 
-const NotFound = () => {
-    // Reindirizza alla homepage
-    return <Redirect to="/" />;
-}
+
 
 const App = () => {
-    
+    const redirectIfNotFound = () => {
+        return <HomePage />;
+    }
+
 
     return (
         <Router>
@@ -44,7 +43,7 @@ const App = () => {
                <Route path="/">
                 <HomePage/>
                 </Route> 
-                <Route component={NotFound} />
+                <Route render={redirectIfNotFound} />
             </Switch>
 
         </div>
