@@ -89,7 +89,28 @@ class APITestCase(unittest.TestCase):
 
     def test_get_all_playlists(self):
         """TEST GETTING ALL PLAYLISTS"""
-        response = self.client.get('playlist_video/playlists')
+        # Signup Data
+        signup_data = {
+            "first_name": "testname",
+            "last_name": "testlast",
+            "email": "testemail@test.com",
+            "password": "dnaininw"
+        }
+    
+        signup_response = self.client.post('/auth/signup', json=signup_data)
+        self.assertEqual(signup_response.status_code, 201, "Signup failed")
+    
+        login_data = {
+            "email": "testemail@test.com",
+            "password": "dnaininw"
+        }
+    
+        login_response = self.client.post('/auth/login', json=login_data)
+        self.assertEqual(login_response.status_code, 200, "Login failed")
+        access_token = login_response.json.get('access_token')
+    
+        headers = {'Authorization': f'Bearer {access_token}'}
+        response = self.client.get('/playlist_video/playlists', headers=headers)
         status_code = response.status_code
         self.assertEqual(status_code, 200)
 
