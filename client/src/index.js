@@ -16,6 +16,11 @@ import SignUpPage from './components/SignUp';
 import HomePage from './components/Home';
 import VideosPage from './components/Videos'
 
+const NotFound = () => {
+    // Reindirizza alla homepage
+    return <Redirect to="/" />;
+}
+
 const App = () => {
     
 
@@ -39,9 +44,7 @@ const App = () => {
                <Route path="/">
                 <HomePage/>
                 </Route> 
-                <Route>
-                        <Redirect to="/" />
-                    </Route>
+                <Route component={NotFound} />
             </Switch>
 
         </div>
