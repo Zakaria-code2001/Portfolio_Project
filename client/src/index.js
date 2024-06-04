@@ -7,7 +7,8 @@ import NavBar from './components/Navbar';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from 'react-router-dom'
 import PlaylistsPage from './components/Playlists';
 import LoginPage from './components/Login';
