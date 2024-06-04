@@ -81,6 +81,7 @@
   width: 30px; /* Set width */
   height: 30px; /* Set height */
   padding: 5px; /* Add padding */
+  background-color: white;
   background-image: url('./ham.png'); /* Set background image */
   background-size: cover; /* Scale the background image to cover the entire button */
   background-repeat: no-repeat; /* Prevent the background image from repeating */
