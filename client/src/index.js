@@ -38,6 +38,9 @@ const App = () => {
                <Route path="/">
                 <HomePage/>
                 </Route> 
+                <Route>
+                        <Redirect to="/" />
+                    </Route>
             </Switch>
 
         </div>
