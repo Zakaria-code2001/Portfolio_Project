@@ -23,7 +23,7 @@ const LoggedOutHome = () => {
 const HomePage = () => {
     const [logged] = useAuth();
     return (
-        <div className="home-page" style={{backgroundImage: 'url("https://images.pexels.com/photos/694740/pexels-photo-694740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")'}}>
+        <div className="home-page">
             {logged ? <LoggedInHome /> : <LoggedOutHome />}
         </div>
     )
