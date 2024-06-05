@@ -14,7 +14,7 @@ const LoggedOutHome = () => {
     return (
         <div className="home-container">
             <h1 className="heading">Welcome to MouZa</h1>
-            <Link to='/signup' className="btn btn-primary btn-lg">Get Started</Link>
+            <Link to='/login' className="btn btn-primary btn-lg">Get Started</Link>
         </div>
     )
 }
