@@ -109,3 +109,6 @@ h1.heading {
     width: calc(50% - 20px);
   }
 }
+.center-button {
+  text-align: center;
+}
