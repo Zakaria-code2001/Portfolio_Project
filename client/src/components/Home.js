@@ -5,8 +5,7 @@ import { useAuth } from "../auth";
 const LoggedInHome = () => {
     return (
         <div className="list">
-            List of yours
-            <Link to='/playlists' className="btn btn-primary">Go to Playlists</Link>
+            <Link to='/Playlists' className="btn btn-primary">Go to Playlists</Link>
         </div>
     )
 }
