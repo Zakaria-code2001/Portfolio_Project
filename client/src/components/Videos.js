@@ -16,15 +16,24 @@ const VideosPage = () => {
         fetchPlaylistDetails();
     }, [playlist_id]);
     
-    const fetchPlaylistDetails = () => {
-        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}`)
-            .then(response => response.json())
-            .then(data => {
-                setPlaylistName(data.name);
-            })
-            .catch(error => {
-                console.error('Error fetching playlist details:', error);
+    const fetchPlaylistDetails = async () => {
+        const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
+
+        try {
+            const response = await fetch(`${BASEURL}/playlist_video/playlists/${playlist_id}`, {
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(token)}`,
+                    'Content-Type': 'application/json'
+                }
             });
+            if (!response.ok) {
+                throw new Error('Errore nella risposta della rete');
+            }
+            const data = await response.json();
+            setPlaylistName(data.name);
+        } catch (error) {
+            console.error('Errore nel recupero dei dettagli della playlist:', error);
+        }
     };
     
     const fetchVideos = () => {
