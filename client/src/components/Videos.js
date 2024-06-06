@@ -13,13 +13,24 @@ const VideosPage = () => {
 
     useEffect(() => {
         fetchVideos();
+        fetchPlaylistDetails();
     }, [playlist_id]);
+    
+    const fetchPlaylistDetails = () => {
+        fetch(`${BASEURL}/playlists/${playlist_id}`)
+            .then(response => response.json())
+            .then(data => {
+                setPlaylistName(data.name);
+            })
+            .catch(error => {
+                console.error('Error fetching playlist details:', error);
+            });
+    };
     
     const fetchVideos = () => {
         fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
             .then(response => response.json())
             .then(data => {
-                setPlaylistName(data.playlistName);
                 setVideos(data);
             })
             .catch(error => {
