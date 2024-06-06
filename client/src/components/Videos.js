@@ -7,6 +7,7 @@ const VideosPage = () => {
     const { playlist_id } = useParams();
     const [videos, setVideos] = useState([]);
     const [videoToDelete, setVideoToDelete] = useState(null);
+    const [playlistName, setPlaylistName] = useState('');
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
 
@@ -18,6 +19,7 @@ const VideosPage = () => {
         fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}/videos`)
             .then(response => response.json())
             .then(data => {
+                setPlaylistName(data.playlistName);
                 setVideos(data);
             })
             .catch(error => {
@@ -88,10 +90,11 @@ const VideosPage = () => {
 
     return (
         <div className="videos-page">
-            <h1>Videos</h1>
+            <h1>{playlistName}</h1>
             <div className="video-container">
                 {videos.map(video => (
                     <Card key={video.id} title={video.title} description={video.description} className="video-card">
+                        <h2>{video.title}</h2>
                         <div className="video-wrapper">
                             <VideoPlayer url={video.url} />
                         </div>
