@@ -11,6 +11,8 @@ const VideosPage = () => {
     const [playlistName, setPlaylistName] = useState('');
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
+    const [counter, setCounter] = useState(0);
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         fetchVideos();
