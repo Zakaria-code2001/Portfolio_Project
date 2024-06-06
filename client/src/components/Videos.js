@@ -18,28 +18,26 @@ const VideosPage = () => {
     
     const fetchPlaylistDetails = async () => {
         const token = localStorage.getItem('REACT_TOKEN_AUTH_KEY');
-    
-        try {
-            const decodedToken = jwtDecode(token);
-            const user_id = decodedToken.sub;
-    
-            const response = await fetch(`${BASEURL}/playlist_video/playlists/${playlist_id}?user_id=${user_id}`, {
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(token)}`,
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            if (!response.ok) {
-                throw new Error('Errore nella risposta della rete');
-            }
-    
-            const data = await response.json();
-            setPlaylistName(data.name);
-        } catch (error) {
-            console.error('Errore nel recupero dei dettagli della playlist:', error);
+        const decodedToken = jwtDecode(token);
+        const user_id = decodedToken.sub;
+
+
+        fetch(`${BASEURL}/playlist_video/playlists?user_id=${user_id}`, {
+           headers: {
+               'Authorization': `Bearer ${JSON.parse(token)}`,
+               'Content-Type': 'application/json',
+               'accept': 'application/json'
+           }
+        })
+        .then(res => res.json())
+        .then(data => {
+           console.log('Fetched playlists:', data);
+           if (data && data.length > 0) {
+            setPlaylistName(data[0].name);
         }
-    };
+        })
+        .catch(err => console.error('Error fetching playlists:', err));
+   };
     
     
     const fetchVideos = () => {
