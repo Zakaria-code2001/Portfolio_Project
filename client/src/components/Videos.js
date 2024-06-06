@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button, Form } from 'react-bootstrap';
+import {jwtDecode} from 'jwt-decode';
 import BASEURL from "./config";
 
 const VideosPage = () => {
