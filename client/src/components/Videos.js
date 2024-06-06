@@ -17,7 +17,7 @@ const VideosPage = () => {
     }, [playlist_id]);
     
     const fetchPlaylistDetails = () => {
-        fetch(`${BASEURL}/playlists/${playlist_id}`)
+        fetch(`${BASEURL}/playlist_video/playlist/${playlist_id}`)
             .then(response => response.json())
             .then(data => {
                 setPlaylistName(data.name);
