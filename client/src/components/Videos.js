@@ -154,61 +154,61 @@ const changeVideo = (index) => {
 };
 return (
     <div className="videos-page">
-        <h1>Videos</h1>
-        <Container>
-            <div className="main">
-                <div className="videoCon">
-                    <h1 className="textHeader">Video Player</h1>
-                    {videos.length > 0 ? (
-                        <div className="vide">
-                            <iframe
-                                width="100%"
-                                height="100%"
-                                src={`https://www.youtube.com/embed/${getYouTubeVideoId(videos[counter].url)}`}
-                                title="YouTube video player"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerPolicy="strict-origin-when-cross-origin"
-                                allowFullScreen
-                            ></iframe>
-                        </div>
-                    ) : (
-                        <p>No videos available</p>
-                    )}
-                    <h3 className="about">About</h3>
-                    <p className="aboutText">
-                        {videos.length > 0 ? videos[counter].description : "No video selected"}
-                    </p>
-                </div>
-                <div className="contentCont">
-                    <span onClick={() => setClicked(!clicked)} className={`iconS ${!clicked ? "clicked" : "clickedN"}`}>
-                        <img src="/path/to/arrow/image" alt="" />
-                    </span>
-                    <ul className={`slide ${!clicked ? "clicked" : ""}`}>
-                        <h4 className="listTitle">My List</h4>
-                        {videos.map((elm, index) => (
-                            <li key={elm.id}>
-                                {elm.title} {counter === index && <img src="/path/to/video/icon" alt="" />}
-                                <Button variant="danger" onClick={() => { handleDelete(elm); window.location.href = 'https://portfolio-project-1-vs55.onrender.com/'; }}>X</Button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+    <h1>Videos</h1>
+    <Container>
+        <div className="main">
+            <div className="videoCon">
+                <h1 className="textHeader">Video Player</h1>
+                {videos.length > 0 ? (
+                    <div className="vide">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${getYouTubeVideoId(videos[counter].url)}`}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                ) : (
+                    <p>No videos available</p>
+                )}
+                <h3 className="about">About</h3>
+                <p className="aboutText">
+                    {videos.length > 0 ? videos[counter].description : "No video selected"}
+                </p>
             </div>
-        </Container>
-        <Form className="create-video-form">
-            <Form.Group controlId="title">
-                <Form.Label>Title</Form.Label>
-                <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
-            </Form.Group>
-            <Form.Group controlId="url">
-                <Form.Label>URL</Form.Label>
-                <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
-            </Form.Group>
-            <Button variant="primary" onClick={handleCreate}>Create</Button>
-        </Form>
-    </div>
-);
+            <div className="contentCont">
+                <span onClick={() => setClicked(!clicked)} className={`iconS ${!clicked ? "clicked" : "clickedN"}`}>
+                    <img src="/path/to/arrow/image" alt="" />
+                </span>
+                <ul className={`slide ${!clicked ? "clicked" : ""}`}>
+                    <h4 className="listTitle">My List</h4>
+                    {videos.map((elm, index) => (
+                        <li onClick={() => changeVideo(index)} key={elm.id}>
+                            {elm.title} {counter === index && <img src="/path/to/video/icon" alt="" />}
+                            <Button variant="danger" onClick={() => { handleDelete(elm); window.location.href = 'https://portfolio-project-1-vs55.onrender.com/'; }}>X</Button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </Container>
+            <Form className="create-video-form">
+                <Form.Group controlId="title">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" value={title} onChange={e => setTitle(e.target.value)} />
+                </Form.Group>
+                <Form.Group controlId="url">
+                    <Form.Label>URL</Form.Label>
+                    <Form.Control type="text" value={url} onChange={e => setUrl(e.target.value)} />
+                </Form.Group>
+                <Button variant="primary" onClick={handleCreate}>Create</Button>
+            </Form>
+        </div>
+    );
 };
 
 export default VideosPage;
