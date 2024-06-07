@@ -201,6 +201,7 @@ const LoggedOutHome = () => {
                         <div className="col-lg-4 text-lg-end">
                             <a className="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
                             <a className="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                            <a className="link-dark text-decoration-none" href="#!">Coockie Policy</a>
                         </div>
                     </div>
                 </div>
