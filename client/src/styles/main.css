@@ -463,6 +463,7 @@ h1.heading {
 .team-member.member2 {
   background-image: url('https://cdn.pixabay.com/photo/2022/02/27/07/25/jacket-7036779_1280.jpg');
 }
+
 /* Main container for logged-in home */
 .logged-in-container {
   font-family: Arial, sans-serif;
@@ -553,4 +554,19 @@ h1.heading {
   .logged-in-container .col-md-4 {
       max-width: 100%;
   }
+}
+
+/* Additional styles specific to logged-out home */
+.home-container .logged-in-container {
+  /* Reset styles for logged-in container within logged-out home */
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.home-container .logged-in-container .header,
+.home-container .logged-in-container .page-section {
+  /* Reset specific styles for header and page-section within logged-in container */
+  margin: 0;
+  padding: 0;
 }
