@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 .page-section {
   padding: 6rem 0;
 }
@@ -288,7 +291,7 @@ h1.heading {
 }
 
 #contact {
-  background-image: url('../images/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg'); /* Replace 'path_to_your_background_image.jpg' with the path to your image */
+  background-image: url('../components/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg'); /* Replace 'path_to_your_background_image.jpg' with the path to your image */
   background-size: cover;
   background-position: center;
   padding: 100px 0; /* Adjust the padding as needed */
@@ -418,44 +421,25 @@ h1.heading {
 */
 
 /* Team Section Styles */
-#team {
-  background-color: #f8f9fa;
-  padding: 60px 0;
-}
-
-.team-heading {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.team-heading h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #343a40;
-}
-
-.team-heading h3 {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #6c757d;
-}
-
+/* Slider styles */
 .team-slider {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
 }
 
+/* Team member styles */
 .team-member {
   text-align: center;
   padding: 20px;
+  border-radius: 50%;
+  width: 200px; /* Set a fixed width */
+  height: 200px; /* Set a fixed height */
+  background-size: cover;
+  background-position: center;
 }
 
-.team-member img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 20px;
+.member-info {
+  padding-top: 20px; /* Adjust spacing between profile photo and text */
 }
 
 .team-member h4 {
@@ -471,27 +455,11 @@ h1.heading {
   color: #6c757d;
 }
 
-.slick-slide {
-  margin: 0 10px;
+/* Background images */
+.team-member.member1 {
+  background-image: url('../components/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg');
 }
 
-.slick-prev, .slick-next {
-  background-color: #343a40;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  color: #fff;
-  display: flex !important;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-}
-
-.slick-prev:hover, .slick-next:hover {
-  background-color: #0056b3;
-  color: #fff;
-}
-
-.slick-prev:before, .slick-next:before {
-  content: '';
+.team-member.member2 {
+  background-image: url('../components/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg');
 }

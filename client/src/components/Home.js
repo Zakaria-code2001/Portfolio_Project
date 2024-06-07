@@ -67,27 +67,32 @@ const LoggedOutHome = () => {
                 </div>
             </section>
             <section className="page-section" id="team">
-                <div className="container">
-                    <div className="text-center">
-                        <h2 className="section-heading text-uppercase">Our Team</h2>
-                        <h3 className="section-subheading text-muted">Meet our dedicated team members.</h3>
-                    </div>
-                    <Slider {...settings}>
-                        <div className="team-member">
-                            <img className="mx-auto rounded-circle" src="../images/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 1" />
-                            <h4>Team Member 1</h4>
-                            <p className="text-muted">Position</p>
-                            <p className="text-muted">Description of Team Member 1.</p>
-                        </div>
-                        <div className="team-member">
-                            <img className="mx-auto rounded-circle" src="../images/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 2" />
-                            <h4>Team Member 2</h4>
-                            <p className="text-muted">Position</p>
-                            <p className="text-muted">Description of Team Member 2.</p>
-                        </div>
-                    </Slider>
+    <div className="container">
+        <div className="text-center">
+            <h2 className="section-heading text-uppercase">Our Team</h2>
+            <h3 className="section-subheading text-muted">Meet our dedicated team members.</h3>
+        </div>
+        <Slider {...settings}>
+            <div className="team-member">
+                <div className="member-info text-center">
+                    <img className="mx-auto rounded-circle profile-photo" src="top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 1" />
+                    <h4>Team Member 1</h4>
+                    <p className="text-muted">Position</p>
+                    <p className="text-muted">Description of Team Member 1.</p>
                 </div>
-            </section>
+            </div>
+            <div className="team-member">
+                <div className="member-info text-center">
+                    <img className="mx-auto rounded-circle profile-photo" src="top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 2" />
+                    <h4>Team Member 2</h4>
+                    <p className="text-muted">Position</p>
+                    <p className="text-muted">Description of Team Member 2.</p>
+                </div>
+            </div>
+        </Slider>
+    </div>
+</section>
+
             <section className="section about-us">
                 <h2>About Us</h2>
                 <p>Learn more about MouZa and our mission to provide the best music experience.</p>
