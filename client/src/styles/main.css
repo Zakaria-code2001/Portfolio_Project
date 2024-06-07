@@ -455,15 +455,6 @@ h1.heading {
   color: #6c757d;
 }
 
-
-/* Background images for team members */
-.team-member.member1 {
-  background-image: url('https://cdn.pixabay.com/photo/2022/02/27/09/08/music-7036896_1280.jpg');
-}
-
-.team-member.member2 {
-  background-image: url('https://cdn.pixabay.com/photo/2022/02/27/07/25/jacket-7036779_1280.jpg');
-}
 /* Main container for logged-in home */
 .logged-in-container {
   font-family: Arial, sans-serif;

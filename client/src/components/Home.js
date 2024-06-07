@@ -86,7 +86,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="https://www.flaticon.com/svg/static/icons/svg/5765/5765567.svg" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
+                                <img src="./images/playlist.png" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Playlist Creation</h4>
                             <p className="text-muted">Create and manage your playlists effortlessly.</p>
@@ -94,7 +94,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="https://www.flaticon.com/svg/static/icons/svg/1617/16171054.svg" alt="Video Management" className="fa-stack-1x fa-inverse" />
+                                <img src="./images/clapperboard.png" alt="Video Management" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Video Management</h4>
                             <p className="text-muted">Organize your videos with ease.</p>
@@ -102,7 +102,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="https://www.flaticon.com/svg/static/icons/svg/3055/3055754.svg" alt="Web Security" className="fa-stack-1x fa-inverse" />
+                                <img src="./images/padlock.png" alt="Web Security" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Web Security</h4>
                             <p className="text-muted">Your data is safe with us.</p>
