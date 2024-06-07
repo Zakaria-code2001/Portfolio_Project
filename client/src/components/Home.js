@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { useAuth } from "../auth";
 import '../styles/main.css';  // Import the consolidated CSS file
+import Slider from "react-slick";
 
 const LoggedInHome = () => {
     return (
@@ -12,6 +13,14 @@ const LoggedInHome = () => {
 }
 
 const LoggedOutHome = () => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+
     return (
         <div className="home-container">
             <header className="header">
@@ -23,98 +32,118 @@ const LoggedOutHome = () => {
                     </div>
                 </div>
             </header>
-            <section class="page-section" id="services">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Features</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <section className="page-section" id="services">
+                <div className="container">
+                    <div className="text-center">
+                        <h2 className="section-heading text-uppercase">Features</h2>
+                        <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    </div>
+                    <div className="row text-center">
+                        <div className="col-md-4">
+                            <span className="fa-stack fa-4x">
+                                <i className="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i className="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h4 className="my-3">Playlist creation</h4>
+                            <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        </div>
+                        <div className="col-md-4">
+                            <span className="fa-stack fa-4x">
+                                <i className="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i className="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h4 className="my-3">Video management</h4>
+                            <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        </div>
+                        <div className="col-md-4">
+                            <span className="fa-stack fa-4x">
+                                <i className="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i className="fas fa-lock fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h4 className="my-3">Web Security</h4>
+                            <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Playlist creation</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </section>
+            <section className="page-section" id="team">
+                <div className="container">
+                    <div className="text-center">
+                        <h2 className="section-heading text-uppercase">Our Team</h2>
+                        <h3 className="section-subheading text-muted">Meet our dedicated team members.</h3>
                     </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Video management</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="my-3">Web Security</h4>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-                    </div>
+                    <Slider {...settings}>
+                        <div className="team-member">
+                            <img className="mx-auto rounded-circle" src="../images/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 1" />
+                            <h4>Team Member 1</h4>
+                            <p className="text-muted">Position</p>
+                            <p className="text-muted">Description of Team Member 1.</p>
+                        </div>
+                        <div className="team-member">
+                            <img className="mx-auto rounded-circle" src="../images/top-view-chat-bubbles-with-telephone-receiver-copy-space.jpg" alt="Team Member 2" />
+                            <h4>Team Member 2</h4>
+                            <p className="text-muted">Position</p>
+                            <p className="text-muted">Description of Team Member 2.</p>
+                        </div>
+                    </Slider>
                 </div>
-            </div>
-        </section>
+            </section>
             <section className="section about-us">
                 <h2>About Us</h2>
                 <p>Learn more about MouZa and our mission to provide the best music experience.</p>
             </section>
-
-            <section class="page-section" id="contact">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Contact Us</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN" class="contact-form">
-            <div class="row align-items-stretch">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+            <section className="page-section" id="contact">
+                <div className="container">
+                    <div className="text-center">
+                        <h2 className="section-heading text-uppercase">Contact Us</h2>
+                        <h3 className="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN" className="contact-form">
+                        <div className="row align-items-stretch">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <input className="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                                    <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                </div>
+                                <div className="form-group">
+                                    <input className="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                                    <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                    <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                </div>
+                                <div className="form-group">
+                                    <input className="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
+                                    <div className="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="form-group form-group-textarea">
+                                    <textarea className="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                                    <div className="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                                </div>
+                            </div>
+                            <div className="col-12 text-center">
+                                <button className="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <footer className="footer py-4">
+                <div className="container">
+                    <div className="row align-items-center">
+                        <div className="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
+                        <div className="col-lg-4 my-3 my-lg-0">
+                            <a className="btn btn-dark btn-social mx-2" href="https://www.youtube.com/watch?v=Wlb1etk-ai0&ab_channel=Cairocoders" aria-label="Twitter"><i className="fab fa-twitter"></i></a>
+                            <a className="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+                            <a className="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <div className="col-lg-4 text-lg-end">
+                            <a className="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                            <a className="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group form-group-textarea">
-                        <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
-
-            <footer class="footer py-4">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2023</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="https://www.youtube.com/watch?v=Wlb1etk-ai0&ab_channel=Cairocoders" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+            </footer>
         </div>
     )
 }
