@@ -2,20 +2,19 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { useAuth } from "../auth";
 import '../styles/main.css';  // Consolidated CSS import
-import Slider from "react-slick";
-import {TextWithLineBreaks} from './TextWithLineBreaks'; 
+import Slider from "react-slick"; 
 
 const LoggedInHome = () => (
     <div className="logged-in-container">
         <header className="header">
             <h1 className="heading">Welcome Back to MouZa</h1>
             <p className="subheading">Explore your video playlists and enjoy your favorites.</p>
-            <TextWithLineBreaks>
-            <div className="center-button">
-                <Link to='/Playlists' className="btn btn-primary btn-lg">View My Playlists</Link>
-            </div>
-            </TextWithLineBreaks>
-            
+            {/* Inline functional component for text with line breaks */}
+            {(() => (
+                <div className="center-button">
+                    <Link to='/Playlists' className="btn btn-primary btn-lg">View My Playlists</Link>
+                </div>
+            ))()}
         </header>
         <section className="page-section" id="features">
             <div className="container">
@@ -75,12 +74,10 @@ const LoggedOutHome = () => {
         <div className="home-container">
             <header className="header">
                 <div>
-                <h1 className="heading">Welcome to MouZa</h1>
-                <TextWithLineBreaks>
-                Are you ready for a new experience?
-                </TextWithLineBreaks>
+                    <h1 className="heading">Welcome to MouZa</h1>
+                    {/* Inline functional component for text with line breaks */}
+                    {(() => <div>Are you ready for a new experience?</div>)()}
                 </div>
-                <br/>
                 <div className="center-button">
                     <Link to='/login' className="btn btn-primary btn-lg">Get Started</Link>
                 </div>
