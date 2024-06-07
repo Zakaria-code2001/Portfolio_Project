@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from "../auth";
 import '../styles/main.css';  // Consolidated CSS import
 import Slider from "react-slick";
-import TextWithLineBreaks from './TextWithLineBreaks'; 
+import {TextWithLineBreaks} from './TextWithLineBreaks'; 
 
 const LoggedInHome = () => (
     <div className="logged-in-container">
