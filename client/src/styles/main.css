@@ -455,7 +455,8 @@ h1.heading {
   color: #6c757d;
 }
 
-/* Background images */
+
+/* Background images for team members */
 .team-member.member1 {
   background-image: url('https://cdn.pixabay.com/photo/2022/02/27/09/08/music-7036896_1280.jpg');
 }
