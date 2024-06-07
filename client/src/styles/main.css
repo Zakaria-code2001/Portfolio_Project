@@ -546,9 +546,3 @@ h1.heading {
       max-width: 100%;
   }
 }
-.feature {
-  background-color: #f8f9fa; /* Light gray background */
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 30px; /* Add some margin below each feature */
-}

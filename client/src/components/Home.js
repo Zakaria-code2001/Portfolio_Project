@@ -74,6 +74,7 @@ const LoggedOutHome = () => {
                 <h1 className="heading">Welcome to MouZa</h1>
                 <h1 className="heading">Are you ready for a new experience?</h1>
                 </div>
+                <br/>
                 <div className="center-button">
                     <Link to='/login' className="btn btn-primary btn-lg">Get Started</Link>
                 </div>
@@ -88,7 +89,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="./styles/images/playlist.png" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
+                                <img src="https://img.icons8.com/?size=100&id=23031&format=png&color=000000" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Playlist Creation</h4>
                             <p className="text-muted">Create and manage your playlists effortlessly.</p>
@@ -96,7 +97,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="./styles/images/clapperboard.png" alt="Video Management" className="fa-stack-1x fa-inverse" />
+                                <img src="https://img.icons8.com/?size=100&id=106753&format=png&color=000000" alt="Video Management" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Video Management</h4>
                             <p className="text-muted">Organize your videos with ease.</p>
@@ -104,7 +105,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="./styles/images/padlock.png" alt="Web Security" className="fa-stack-1x fa-inverse" />
+                                <img src="https://img.icons8.com/?size=100&id=Kp3rKjBdoB5B&format=png&color=000000" alt="Web Security" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Web Security</h4>
                             <p className="text-muted">Your data is safe with us.</p>
