@@ -17,7 +17,9 @@
     "react-jwt": "^1.2.1",
     "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1",
+    "react-slick": "^0.30.2",
     "react-token-auth": "^2.3.8",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
