@@ -87,7 +87,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="../../styles/images/playlist.png" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
+                                <img src="./styles/images/playlist.png" alt="Playlist Creation" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Playlist Creation</h4>
                             <p className="text-muted">Create and manage your playlists effortlessly.</p>
@@ -95,7 +95,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="../../styles/images/clapperboard.png" alt="Video Management" className="fa-stack-1x fa-inverse" />
+                                <img src="./styles/images/clapperboard.png" alt="Video Management" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Video Management</h4>
                             <p className="text-muted">Organize your videos with ease.</p>
@@ -103,7 +103,7 @@ const LoggedOutHome = () => {
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
                                 <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                                <img src="../../styles/images/padlock.png" alt="Web Security" className="fa-stack-1x fa-inverse" />
+                                <img src="./styles/images/padlock.png" alt="Web Security" className="fa-stack-1x fa-inverse" />
                             </span>
                             <h4 className="my-3">Web Security</h4>
                             <p className="text-muted">Your data is safe with us.</p>
