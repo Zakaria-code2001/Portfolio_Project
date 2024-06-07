@@ -72,6 +72,7 @@ const LoggedOutHome = () => {
             <header className="header">
                 <h1 className="heading">Welcome to MouZa</h1>
                 <h1 className="heading">Are you ready for a new experience?</h1>
+                <br />
                 <div className="center-button">
                     <Link to='/login' className="btn btn-primary btn-lg">Get Started</Link>
                 </div>
