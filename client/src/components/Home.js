@@ -116,7 +116,7 @@ const LoggedOutHome = () => {
                         <h2 className="section-heading text-uppercase">Our Team</h2>
                         <h3 className="section-subheading text-muted">Meet our dedicated team members.</h3>
                     </div>
-                    <Slider {...settings}>
+                    <Slider {...sliderSettings}>
                         <div className="team-member">
                             <div className="member-info text-center">
                                 <img className="mx-auto rounded-circle profile-photo" src="path/to/zakaria-photo.jpg" alt="Zakaria Mohammadi" />
