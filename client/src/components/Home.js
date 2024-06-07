@@ -128,6 +128,7 @@ const LoggedOutHome = () => {
                         </div>
                     </Slider>
                 </div>
+                </section>
                 <section className="section about-us">
                     <div className="container">
                         <div className="text-center">
