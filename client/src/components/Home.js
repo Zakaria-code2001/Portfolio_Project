@@ -3,15 +3,19 @@ import { Link } from 'react-router-dom';
 import { useAuth } from "../auth";
 import '../styles/main.css';  // Consolidated CSS import
 import Slider from "react-slick";
+import TextWithLineBreaks from './TextWithLineBreaks'; 
 
 const LoggedInHome = () => (
     <div className="logged-in-container">
         <header className="header">
             <h1 className="heading">Welcome Back to MouZa</h1>
             <p className="subheading">Explore your video playlists and enjoy your favorites.</p>
+            <TextWithLineBreaks>
             <div className="center-button">
                 <Link to='/Playlists' className="btn btn-primary btn-lg">View My Playlists</Link>
             </div>
+            </TextWithLineBreaks>
+            
         </header>
         <section className="page-section" id="features">
             <div className="container">
@@ -72,7 +76,9 @@ const LoggedOutHome = () => {
             <header className="header">
                 <div>
                 <h1 className="heading">Welcome to MouZa</h1>
-                <h1 className="heading">Are you ready for a new experience?</h1>
+                <TextWithLineBreaks>
+                Are you ready for a new experience?
+                </TextWithLineBreaks>
                 </div>
                 <br/>
                 <div className="center-button">
