@@ -117,17 +117,17 @@ const LoggedOutHome = () => {
                         <h3 className="section-subheading text-muted">Meet our dedicated team members.</h3>
                     </div>
                     <Slider {...sliderSettings}>
-                        <div className="team-member member1" style={{ backgroundImage: "url('https://cdn.pixabay.com/photo/2022/02/27/09/08/music-7036896_1280.jpg')" }}>
+                        <div className="team-member member1">
                             <div className="member-info text-center">
-                                <img className="mx-auto rounded-circle profile-photo" src="path/to/zakaria-photo.jpg" alt="Zakaria Mohammadi" />
+                                <img className="mx-auto rounded-circle profile-photo" src="https://cdn.pixabay.com/photo/2022/02/27/09/08/music-7036896_1280.jpg" alt="Zakaria Mohammadi" />
                                 <h4>Zakaria Mohammadi</h4>
                                 <p className="text-muted">Junior Frontend & Backend Developer, DevOps Engineer</p>
                                 <p className="text-muted">Zakaria collaborates on both frontend and backend development, ensuring the seamless integration of new features and maintaining the DevOps pipeline.</p>
                             </div>
                         </div>
-                        <div className="team-member member2" style={{ backgroundImage: "url('https://cdn.pixabay.com/photo/2022/02/27/07/25/jacket-7036779_1280.jpg')" }}>
+                        <div className="team-member member2">
                             <div className="member-info text-center">
-                                <img className="mx-auto rounded-circle profile-photo" src="path/to/mounim-photo.jpg" alt="Mounim Nadir" />
+                                <img className="mx-auto rounded-circle profile-photo" src="https://cdn.pixabay.com/photo/2022/02/27/07/25/jacket-7036779_1280.jpg" alt="Mounim Nadir" />
                                 <h4>Mounim Nadir</h4>
                                 <p className="text-muted">Junior Frontend & Backend Developer, DevOps Engineer</p>
                                 <p className="text-muted">Mounim works alongside Zakaria on frontend and backend tasks, contributing to the development process and enhancing our DevOps practices.</p>
